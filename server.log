@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/runpy.py", line 194, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/server.py", line 1311, in <module>
+    test(
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/server.py", line 1266, in test
+    with ServerClass(addr, HandlerClass) as httpd:
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/socketserver.py", line 452, in __init__
+    self.server_bind()
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/server.py", line 1309, in server_bind
+    return super().server_bind()
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/http/server.py", line 139, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/opt/homebrew/Cellar/python@3.8/3.8.20/Frameworks/Python.framework/Versions/3.8/lib/python3.8/socketserver.py", line 466, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 48] Address already in use
