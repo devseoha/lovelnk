@@ -141,11 +141,6 @@
             background: rgba(0,0,0,0.7) !important;
         }
         
-        /* 음성 시작 버튼 호버 효과 */
-        #audio-start-overlay button:hover {
-            background: rgba(255,255,255,1) !important;
-            transform: scale(1.05);
-        }
 
         .private-attend .wrt .i {
             display: initial;
@@ -1158,11 +1153,11 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="main-img-parent" style="position: relative;">
+                    <div class="main-img-parent" style="position: relative; padding-top: 56.25%; background: #000;">
                         <i class="rpd rpd01"></i><i class="rpd rpd02"></i><i class="rpd rpd03"></i><i
                                 class="rpd rpd04"></i>
                         <!-- 동영상 우선 시도 -->
-                        <video id="main-video" autoplay loop playsinline preload="auto" style="width: 100%; object-fit: cover; object-position: center top; position: absolute; top: 0; left: 0;">
+                        <video id="main-video" autoplay muted loop playsinline preload="auto" poster="./public/images/55.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 2; opacity: 0; transition: opacity 0.6s ease;">
                             <source src="./public/img/index.mp4" type="video/mp4">
                             <source src="./public/img/index.mp4" type="video/quicktime">
                             <!-- 동영상을 지원하지 않는 경우 대체 이미지 -->
@@ -1172,23 +1167,11 @@
                         <!-- 음소거 토글 버튼 -->
                         <button id="mute-toggle" onclick="toggleMute()" style="position: absolute; top: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
                             <svg id="mute-icon" width="20" height="20" viewBox="0 0 24 24" fill="white">
-                                <!-- 음성 재생 상태 아이콘 (기본) -->
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                <!-- 음소거 상태 아이콘 (기본) -->
+                                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
                             </svg>
                         </button>
-                        
-                        <!-- 음성 시작 안내 오버레이 -->
-                        <div id="audio-start-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 15; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;">
-                            <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 30px; backdrop-filter: blur(10px);">
-                                <div style="font-size: 48px; margin-bottom: 20px;">🎵</div>
-                                <div style="font-size: 18px; margin-bottom: 10px; font-weight: bold;">음악과 함께 결혼식에 참석하세요</div>
-                                <div style="font-size: 14px; margin-bottom: 25px; opacity: 0.9;">웨딩 영상과 함께 음악을 들으려면 클릭해주세요</div>
-                                <button onclick="startAudioWithInteraction()" style="background: rgba(255,255,255,0.9); color: #333; border: none; border-radius: 25px; padding: 12px 24px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background 0.3s ease;">
-                                    🎵 음악 시작하기
-                                </button>
-                            </div>
-                        </div>
-                        <img id="main-image" src="./public/images/temp_1/wedding_1176.jpg" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                        <img id="main-image" src="./public/images/55.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; transition: opacity 0.6s ease;">
                         <div class="imgCover" style="z-index: 5;"></div>
                     </div>
                     <div class="wave bottom">
@@ -3021,17 +3004,37 @@
     }
 
     $(document).ready(function () {
+       console.log('%c🎊 축하합니다! 개발자의 눈을 발견했습니다! 🎊',
+            'background: linear-gradient(90deg, #ff3b30, #ff9500, #ffcc00, #34c759); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 16px; font-weight: 800;');
+
+        console.log('%c💝 제 모청을 봐주셔서 감사합니당 💝',
+            'color: #ff3b30; font-size: 14px; font-weight: 700;');
+
+        console.log(`%c🌸36살 조금은 늦은 나이에 어찌저찌 결혼이라는 것을 하네요.😆`,
+            'color: #ff9500; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;');
+
+        console.log('%c🎭 이왕 결혼 하는거 오랜시간 평화롭게 인생이라는 게임의 수많은 퀘스트를 잘 깨보겠습니다. ⭐️',
+            'color: #ffcc00; font-size: 12px; font-style: italic;');
+
+        console.log('%c🫶 이거 보셨다면 찐개발자 인정! 왜 개발자모드를 키신거죠? 😂',
+            'color: #34c759; font-size: 12px; font-style: italic;');
+
+        console.log('%c🔥 몰래 카톡 주시면 개발 신의 가호와 함께 높은 연봉 + 완벽 워라밸 기원 드립니다. 👩🏻‍💻',
+            'color: #ff3b30; font-size: 12px; font-style: italic;');
+
+        console.log('%c🙇🏻‍♀️ 모청 봐주셔서 감사합니다! - 서하쓰 드림 💌',
+            'color: #ff9500; font-size: 14px; font-weight: 800; text-decoration: underline;');
+        
         try {
             naver.maps.onJSContentLoaded = naverMapXY;
             naver.maps.Event.once(NAVER_MAP, 'init_stylemap', naverMapXY);
         } catch (err) {
-            //console.log(err);
+            // 지도 로드 실패 시 🥸
         }
     });
 
     function swipeGallery01() {
         var imglen = $("#swipelistid > .swiper-slide").length;
-        //console.log('이미지 갯수: '+imglen);
         if (imglen > 1) {
             const imgList = document.querySelectorAll(`#swipelistid [data-order] img`)
             new Swiper(".mySwiper", {
@@ -3065,14 +3068,12 @@
 
                         var numb = this.activeIndex;
                         var s = $("#swipelistid .swiper-slide").eq(numb).find("img.imgblk.rs").attr('src');
-                        //console.log(s);
                         if (typeof s == "undefined" || s == null || s == "") {
                             return;
                         } // 이미 변환된 이미지
                         var bs = s.replace(/\/([^/]+)-[^.]+\.(jpg|png|jpeg|webp|JPG)/, "/$1-resize.$2");
                         bs = bs.replaceAll('-crop', '')
 
-                        //console.log(bs);
                         $("#swipelistid .swiper-slide:nth-child(" + (numb + 1) + ") img.imgblk").removeClass("rs");
                         if (bs == s) {
                             return;
@@ -3097,7 +3098,6 @@
 
     function swipeGallery02() {
         var imglen = $("#thumblistid > .swiper-slide").length;
-        //console.log('이미지 갯수: '+imglen);
 
 
         if (imglen > 1) {
@@ -3113,15 +3113,12 @@
 
                         index = index + 1;
                         //if(index > 15)
-                        console.log()
                         var src = $("#thumblistid .ss:nth-child(" + (index) + ") > .vs").attr("src");
                         const cropUrl = $("#thumblistid .ss:nth-child(" + (index) + ") > .vs").attr("data-cropData");
                         if (cropUrl) {
                             src = cropUrl
                         }
 
-                        //console.log((index)+" : "+src);
-                        //console.log($("#thumblistid .ss:nth-child("+(index)+") > .vs"));
                         return '<span class="item ' + className + '" style="background-image: url(' + src.replace('1280', '300') + ') !important;"></span>';
                     },
                 },
@@ -3133,7 +3130,6 @@
                     slideChange: function () {
                         var numb = this.activeIndex;
                         var s = $("#thumblistid .swiper-slide").eq(numb).find("img.imgblk.rs").attr('src');
-                        //console.log(s);
                         if (typeof s == "undefined" || s == null || s == "") {
                             return;
                         } // 이미 변환된 이미지
@@ -3141,7 +3137,6 @@
                         bs = bs.replaceAll('-crop', '')
 
 
-                        //console.log(bs);
                         $("#thumblistid .swiper-slide:nth-child(" + (numb + 1) + ") img.imgblk").removeClass("rs");
                         if (bs == s) {
                             return;
@@ -3214,14 +3209,12 @@
                 document.execCommand('copy');
                 alert('클립보드에 복사되었습니다.');
             } catch (err) {
-                console.log('복사 실패:', err);
                 // 현대적인 방법 시도
                 if (navigator.clipboard) {
                     navigator.clipboard.writeText(textarea.value).then(() => {
                         alert('클립보드에 복사되었습니다.');
                     }).catch(err => {
-                        console.log('복사 실패:', err);
-                        alert('복사에 실패했습니다. 직접 선택해서 복사해주세요.');
+                                alert('복사에 실패했습니다. 직접 선택해서 복사해주세요.');
                     });
                 }
             }
@@ -3266,56 +3259,11 @@
         }
     }
     
-    // 사용자 상호작용으로 음성 시작
-    function startAudioWithInteraction() {
-        const video = document.getElementById('main-video');
-        const overlay = document.getElementById('audio-start-overlay');
-        
-        // 비디오 음소거 해제 시도
-        video.muted = false;
-        
-        // 비디오 재생 시도
-        video.play().then(() => {
-            console.log('음성과 함께 비디오 재생 시작');
-            overlay.style.display = 'none';
-        }).catch(error => {
-            console.log('음성 재생 실패, 음소거로 재생:', error);
-            video.muted = true;
-            video.play();
-            overlay.style.display = 'none';
-        });
-    }
-    
-    // 초기 음성 자동 시작 시도
-    function tryAutoplayWithAudio() {
-        const video = document.getElementById('main-video');
-        const overlay = document.getElementById('audio-start-overlay');
-        
-        // 첫 번째 시도: 음성과 함께 자동 재생
-        video.muted = false;
-        
-        video.play().then(() => {
-            console.log('음성과 함께 자동재생 성공');
-            // 성공하면 오버레이 숨김
-            overlay.style.display = 'none';
-        }).catch(error => {
-            console.log('음성 자동재생 차단됨, 사용자 상호작용 필요');
-            // 실패하면 오버레이 표시
-            overlay.style.display = 'flex';
-            
-            // 음소거로 폴백 시도
-            video.muted = true;
-            video.play().catch(fallbackError => {
-                console.log('음소거 자동재생도 실패:', fallbackError);
-            });
-        });
-    }
 
     //=============================================
     // 페이지가 샤르륵 나타나는 효과
     $(document).ready(function () {
 
-        //console.log("애니메이션 (샤르륵)");
 
         $('.anibox').addClass("hd").viewportChecker({
             classToAdd: 'visible animated fadeInUp',
@@ -3335,11 +3283,6 @@
         
         // 메인 동영상 로드 체크
         initMainVideo();
-        
-        // 음성 자동 시작 시도
-        setTimeout(() => {
-            tryAutoplayWithAudio();
-        }, 1000);
 
     });
     
@@ -3477,8 +3420,8 @@
     function optimizeImages() {
         // 중요한 이미지만 미리 로드 (메인 이미지, 첫 번째 갤러리 이미지)
         const criticalImages = [
-            './public/img/index.mp4', // 메인 비디오
-            './public/images/1.jpg',   // 첫 번째 갤러리 이미지
+            './public/images/55.png', // 메인 썸네일
+            './public/images/1.jpg',  // 첫 번째 갤러리 이미지
         ];
         
         criticalImages.forEach(src => {
@@ -3521,24 +3464,21 @@
         const image = document.getElementById('main-image');
         
         if (video && image) {
-            console.log('동영상 초기화 시작');
-            console.log('동영상 경로:', video.querySelector('source').src);
             
             // 동영상 로드 성공 시
             video.addEventListener('loadeddata', () => {
-                console.log('동영상 로드 성공 - readyState:', video.readyState);
-                video.style.display = 'block';
-                image.style.display = 'none';
+                video.style.opacity = '1';
+                image.style.opacity = '0';
+                setTimeout(() => {
+                    image.style.display = 'none';
+                }, 600);
             });
             
             video.addEventListener('canplay', () => {
-                console.log('동영상 재생 가능');
             });
             
             // 동영상 로드 실패 시
             video.addEventListener('error', (e) => {
-                console.log('동영상 로드 실패:', e);
-                console.log('Error code:', video.error ? video.error.code : 'unknown');
                 video.style.display = 'none';
                 image.style.display = 'block';
             });
@@ -3546,39 +3486,30 @@
             // 소스 에러
             video.querySelectorAll('source').forEach(source => {
                 source.addEventListener('error', (e) => {
-                    console.log('Source 에러:', source.src, e);
                 });
             });
             
             // 2초 후 readyState 체크하여 동영상 표시
             setTimeout(() => {
-                console.log('동영상 readyState 체크:', video.readyState);
                 if (video.readyState >= 3) { // HAVE_FUTURE_DATA 이상이면 재생 가능
-                    console.log('동영상 준비 완료, 동영상 표시');
-                    console.log('동영상 현재 스타일:', video.style.cssText);
-                    console.log('이미지 현재 스타일:', image.style.cssText);
-                    video.style.display = 'block';
-                    video.style.zIndex = '10'; // z-index 추가
-                    video.style.position = 'relative'; // position 추가
-                    image.style.display = 'none';
+                    video.style.opacity = '1';
+                    video.style.zIndex = '10';
+                    video.style.position = 'absolute';
+                    image.style.opacity = '0';
+                    setTimeout(() => { image.style.display = 'none'; }, 600);
                     
                     // 강제로 동영상 재생 시도
-                    video.play().then(() => {
-                        console.log('동영상 재생 성공');
-                    }).catch((error) => {
-                        console.log('동영상 재생 실패:', error);
-                        // 재생 실패 시 이미지로 대체
-                        video.style.display = 'none';
+                    video.play().catch(() => {
+                        video.style.opacity = '0';
                         image.style.display = 'block';
+                        image.style.opacity = '1';
                     });
                     
-                    console.log('변경 후 동영상 스타일:', video.style.cssText);
                 } else if (video.readyState === 0) {
-                    console.log('동영상 로드 실패, 이미지로 대체');
-                    video.style.display = 'none';
+                    video.style.opacity = '0';
                     image.style.display = 'block';
+                    image.style.opacity = '1';
                 } else {
-                    console.log('동영상 로딩 중... readyState:', video.readyState);
                 }
             }, 2000);
         }
@@ -3850,24 +3781,19 @@
 
     // 초기 렌더링
     document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOMContentLoaded 실행됨");
         
         // 초기 방명록 미리보기 렌더링
         renderGuestbookPreview();
 
         // 작성하기 버튼 찾기 테스트
         const writeBtn = document.querySelector(".books-w");
-        console.log("작성하기 버튼:", writeBtn);
         
         if (writeBtn) {
             writeBtn.addEventListener("click", () => {
-                console.log("작성하기 버튼 클릭됨");
                 // 방명록 작성 팝업 열기
                 const popup = document.getElementById("gustbk_op");
-                console.log("팝업 요소:", popup);
                 if (popup) {
                     popup.style.display = "block";
-                    console.log("팝업 열림");
                 }
             });
         } else {
