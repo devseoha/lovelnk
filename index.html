@@ -1,7 +1,7 @@
 <html class="basic" lang="ko">
 <head>
     <title>12월 6일 김소년 ♥ 강서하 결혼합니다.</title>
-    <meta property="og:image" content="https://devseoha.github.io/lovelnk.github.io/public/images/temp_1/wedding_1588.jpg">
+    <meta property="og:image" content="https://devseoha.github.io/lovelnk.github.io/public/images/15.jpg">
     <meta property="og:description" content="12월 6일 김소년 ♥ 강서하 결혼합니다.">
     <meta property="og:title" content="12월 6일 김소년 ♥ 강서하 결혼합니다.">
     <meta name="robots" content="noindex">
@@ -96,6 +96,55 @@
             color: var(--box-font-color);;
             border-color: var(--box-border-color);
             background: #fff;
+        }
+        
+        /* 은행 이름 폰트 크기 조정 */
+        .bnk {
+            font-size: 13px !important;
+        }
+        
+        /* 계좌번호 정렬 개선 */
+        .accounts {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+        
+        .accounts .bnk {
+            flex: 0 0 auto !important;
+            margin-right: 10px !important;
+        }
+        
+        .accounts .nmb {
+            flex: 1 !important;
+            text-align: right !important;
+        }
+        
+        /* 아코디언 애니메이션 */
+        .pack .chevron-icon {
+            transition: transform 0.3s ease !important;
+            vertical-align: middle !important;
+        }
+        
+        .pack.open .chevron-icon {
+            transform: rotate(180deg) !important;
+        }
+        
+        .accordion-list {
+            transition: all 0.3s ease !important;
+            overflow: hidden !important;
+        }
+        
+        /* 음소거 버튼 스타일 */
+        #mute-toggle:hover {
+            background: rgba(0,0,0,0.7) !important;
+        }
+        
+        /* 음성 시작 버튼 호버 효과 */
+        #audio-start-overlay button:hover {
+            background: rgba(255,255,255,1) !important;
+            transform: scale(1.05);
         }
 
         .private-attend .wrt .i {
@@ -991,8 +1040,8 @@
                         <span class="baptismal"></span>
                     </span>
                 <span class="cell">
-                        <a class="fa fa-phone-alt" href="tel:01034473502"></a>
-                        <a class="fa fa-envelope" href="sms:01034473502"></a>
+                        <a href="tel:01034473502" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                        <a href="sms:01034473502" style="text-decoration: none; font-size: 18px;">💬</a>
                     </span>
             </div>
             <div class="grd">
@@ -1002,8 +1051,8 @@
                         <span class="baptismal"></span>
                     </span>
                 <span class="cell">
-                        <a class="fa fa-phone-alt" href="tel:01012341234"></a>
-                        <a class="fa fa-envelope" href="sms:01012341234"></a>
+                        <a href="tel:01040638253" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                        <a href="sms:01040638253" style="text-decoration: none; font-size: 18px;">💬</a>
                     </span>
             </div>
             <div class="grd">
@@ -1013,8 +1062,8 @@
                         <span class="baptismal"></span>
                     </span>
                 <span class="cell">
-                        <a class="fa fa-phone-alt" href="tel:01012341234"></a>
-                        <a class="fa fa-envelope" href="sms:01012341234"></a>
+                        <a href="tel:01091593502" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                        <a href="sms:01091593502" style="text-decoration: none; font-size: 18px;">💬</a>
                     </span>
             </div>
         </div>
@@ -1030,8 +1079,8 @@
                     <span class="baptismal"></span>
                 </span>
                 <span class="cell">
-                    <a class="fa fa-phone-alt" href="tel:01038204030"></a>
-                    <a class="fa fa-envelope" href="sms:01038204030"></a>
+                    <a href="tel:01038204030" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                    <a href="sms:01038204030" style="text-decoration: none; font-size: 18px;">💬</a>
                 </span>
             </div>
             <div class="grd">
@@ -1041,8 +1090,8 @@
                     <span class="baptismal"></span>
                 </span>
                 <span class="cell">
-                    <a class="fa fa-phone-alt" href="tel:01035786188"></a>
-                    <a class="fa fa-envelope" href="sms:01035786188"></a>
+                    <a href="tel:01035786188" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                    <a href="sms:01035786188" style="text-decoration: none; font-size: 18px;">💬</a>
                 </span>
             </div>
             <div class="grd">
@@ -1052,8 +1101,8 @@
                     <span class="baptismal"></span>
                 </span>
                 <span class="cell">
-                    <a class="fa fa-phone-alt" href="tel:01072246180"></a>
-                    <a class="fa fa-envelope" href="sms:01072246180"></a>
+                    <a href="tel:01072246180" style="text-decoration: none; font-size: 18px; margin-right: 10px;">📞</a>
+                    <a href="sms:01072246180" style="text-decoration: none; font-size: 18px;">💬</a>
                 </span>
             </div>
         </div>
@@ -1109,11 +1158,38 @@
                             </g>
                         </svg>
                     </div>
-                    <div class="main-img-parent">
+                    <div class="main-img-parent" style="position: relative;">
                         <i class="rpd rpd01"></i><i class="rpd rpd02"></i><i class="rpd rpd03"></i><i
                                 class="rpd rpd04"></i>
-                        <img src="./public/images/temp_1/wedding_1176.jpg">
-                        <div class="imgCover"></div>
+                        <!-- 동영상 우선 시도 -->
+                        <video id="main-video" autoplay loop playsinline preload="auto" style="width: 100%; object-fit: cover; object-position: center top; position: absolute; top: 0; left: 0;">
+                            <source src="./public/img/index.mp4" type="video/mp4">
+                            <source src="./public/img/index.mp4" type="video/quicktime">
+                            <!-- 동영상을 지원하지 않는 경우 대체 이미지 -->
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                        <!-- 음소거 토글 버튼 -->
+                        <button id="mute-toggle" onclick="toggleMute()" style="position: absolute; top: 20px; right: 20px; z-index: 10; background: rgba(0,0,0,0.5); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s ease;">
+                            <svg id="mute-icon" width="20" height="20" viewBox="0 0 24 24" fill="white">
+                                <!-- 음성 재생 상태 아이콘 (기본) -->
+                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- 음성 시작 안내 오버레이 -->
+                        <div id="audio-start-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 15; display: none; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center;">
+                            <div style="background: rgba(255,255,255,0.1); border-radius: 15px; padding: 30px; backdrop-filter: blur(10px);">
+                                <div style="font-size: 48px; margin-bottom: 20px;">🎵</div>
+                                <div style="font-size: 18px; margin-bottom: 10px; font-weight: bold;">음악과 함께 결혼식에 참석하세요</div>
+                                <div style="font-size: 14px; margin-bottom: 25px; opacity: 0.9;">웨딩 영상과 함께 음악을 들으려면 클릭해주세요</div>
+                                <button onclick="startAudioWithInteraction()" style="background: rgba(255,255,255,0.9); color: #333; border: none; border-radius: 25px; padding: 12px 24px; cursor: pointer; font-size: 16px; font-weight: bold; transition: background 0.3s ease;">
+                                    🎵 음악 시작하기
+                                </button>
+                            </div>
+                        </div>
+                        <img id="main-image" src="./public/images/temp_1/wedding_1176.jpg" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+                        <div class="imgCover" style="z-index: 5;"></div>
                     </div>
                     <div class="wave bottom">
                         <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1301,7 +1377,7 @@
             </div>
 
             <div class="telArea">
-                <a class="int_buttn" onclick="openContactPop()"><i class="fa fa-phone-alt"></i>&nbsp;연락하기</a>
+                <a class="int_buttn" onclick="openContactPop()">📞&nbsp;연락하기</a>
             </div>
 
 
@@ -1324,79 +1400,101 @@
         <!--<div class="pic_0_del" style="height: 70px;"></div>-->
         <div class="clearfix anibox hd">
 
-            <div class="gallGridWrapper   " style="height: 386.5px;">
+            <div class="gallGridWrapper" style="height: 386.5px;">
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_21.jpg);">
+                     data-url="./public/images/21.jpg"
+                     style="background-image: url(./public/images/21.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_53.jpg);">
+                     data-url="./public/images/1.jpg"
+                     style="background-image: url(./public/images/1.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_169.jpg);">
+                     data-url="./public/images/2.jpg"
+                     style="background-image: url(./public/images/2.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_391.jpg);">
+                     data-url="./public/images/3.jpg"
+                     style="background-image: url(./public/images/3.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_736.jpg);">
+                     data-url="./public/images/19.jpg"
+                     style="background-image: url(./public/images/19.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_1109.jpg);">
+                     data-url="./public/images/20.jpg"
+                     style="background-image: url(./public/images/20.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_1176.jpg);">
+                     style="background-image: url(./public/images/5.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_1186.jpg);">
+                     data-url="./public/images/6.jpg"
+                     style="background-image: url(./public/images/6.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/temp_1/wedding_1260.jpg);">
+                     style="background-image: url(./public/images/7.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_1520.jpg">
+                     data-url="./public/images/8.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_1588.jpg">
+                     data-url="./public/images/10.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_1676.jpg">
+                     data-url="./public/images/18.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_1748.jpg">
+                     data-url="./public/images/12.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_2597.jpg">
+                     data-url="./public/images/13.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/temp_1/wedding_1191.jpg">
+                     data-url="./public/images/14.jpg">
+                    <img src="./public/img/card/rectangle.png" class="box rectangle">
+                    <img src="./public/img/card/square.png" class="box square">
+                </div>
+                <div class="item"
+                     data-url="./public/images/15.jpg">
+                    <img src="./public/img/card/rectangle.png" class="box rectangle">
+                    <img src="./public/img/card/square.png" class="box square">
+                </div>
+                <div class="item"
+                     data-url="./public/images/17.jpg">
+                    <img src="./public/img/card/rectangle.png" class="box rectangle">
+                    <img src="./public/img/card/square.png" class="box square">
+                </div>
+                <div class="item"
+                     data-url="./public/images/16.jpg">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
@@ -1405,20 +1503,28 @@
             <div class="moreBtnWrap" style="position: relative">
                 <div class="moreBtnGradient" style="position: absolute;width: 100%;height: 100px;bottom: 100%;"></div>
                 <p class="moreBnt grdMoreBnt" onclick="gallMore(this)" style="color: #544f4f">
-                    더보기&nbsp;&nbsp;<i class="fa fa-chevron-down" style="color: #777;"></i>
+                    더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
                 </p>
             </div>
             <script>
                 let isGallOpen = false
                 const gallMore = (e) => {
-                    isGallOpen = true
-                    document.querySelectorAll('.gallGridWrapper [data-url]').forEach(item => {
-                        item.style.backgroundImage = `url('${item.getAttribute('data-url')}')`
-                    })
-                    document.querySelector('.gallGridWrapper').style.height = document.querySelector('.gallGridWrapper').scrollHeight + 'px'
-                    const wrap = document.querySelector(`.moreBtnWrap`)
-                    if (wrap) {
-                        wrap.style.display = 'none'
+                    isGallOpen = !isGallOpen
+                    const icon = e.querySelector('.chevron-icon')
+                    
+                    if (isGallOpen) {
+                        // 더보기 - 모든 이미지 표시
+                        document.querySelectorAll('.gallGridWrapper [data-url]').forEach(item => {
+                            item.style.backgroundImage = `url('${item.getAttribute('data-url')}')`
+                        })
+                        document.querySelector('.gallGridWrapper').style.height = document.querySelector('.gallGridWrapper').scrollHeight + 'px'
+                        e.innerHTML = '접기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease; transform: rotate(180deg);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
+                    } else {
+                        // 접기 - 원래 높이로 복원
+                        document.querySelector('.gallGridWrapper').style.height = '386.5px'
+                        e.innerHTML = '더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     }
                 }
 
@@ -1683,39 +1789,43 @@
         <script src=".js/ref/moment.js"></script>
         <script>
             function getClock() {
-                /*
-                //const clock = document.querySelector("#clock");
-                const nowDate = new Date();//new Date('2025-06-05 16:18:43');
+                const now = moment();
+                const weddingDate = moment('2025-12-06 13:40:00');
 
-                const nowYear = nowDate.getFullYear();
-                const dDate = new Date('2025-12-06 13:40:00');
+                const duration = moment.duration(weddingDate.diff(now));
+                
+                if (duration.asMilliseconds() <= 0) {
+                    // 결혼식이 지났을 경우
+                    $(".countdown .data-days").text("0");
+                    $(".countdown .data-hour").text("0");
+                    $(".countdown .data-min").text("0");
+                    $(".countdown .data-sec").text("0");
+                    
+                    // 하단 텍스트 업데이트
+                    $(".call-comment p").html('소년, 서하의 결혼식이 <span style="color:#f79e9e;">완료</span>되었습니다.');
+                } else {
+                    const days = Math.floor(duration.asDays());
+                    const hours = duration.hours();
+                    const minutes = duration.minutes();
+                    const seconds = duration.seconds();
 
-                const dDay = dDate.getTime() - nowDate.getTime();
-                const day = Math.floor(dDay / (1000 * 60 * 60 * 24));
-                const hours = String(Math.floor((dDay % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, "0");
-                const minutes = String(Math.floor((dDay % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-                const seconds = String(Math.floor((dDay % (1000 * 60)) / 1000)).padStart(2, "0");
-                //clock.innerText = `${day}d ${hours}h ${minutes}m ${seconds}s`;
-                */
-                const now = moment()
-                const wday = moment('2025-12-06 13:40:00')
-
-                const day = parseInt(moment.duration(wday.diff(now)).asDays())
-                const hours = moment.duration(wday.diff(now)).hours()
-                const minutes = moment.duration(wday.diff(now)).minutes()
-                const seconds = moment.duration(wday.diff(now)).seconds()
-
-
-                $(".countdown .data-days").text(day);
-                $(".countdown .data-hour").text(hours);
-                $(".countdown .data-min").text(minutes);
-                $(".countdown .data-sec").text(seconds);
-
+                    $(".countdown .data-days").text(days);
+                    $(".countdown .data-hour").text(hours);
+                    $(".countdown .data-min").text(minutes);
+                    $(".countdown .data-sec").text(seconds);
+                    
+                    // 하단 텍스트 업데이트
+                    $(".call-comment p").html(`소년, 서하의 결혼식이 <span style="color:#f79e9e;">${days}</span>일 남았습니다.`);
+                }
             }
+            
+            // 카운트다운 초기화 및 1초마다 업데이트
+            $(document).ready(function() {
+                getClock(); // 즉시 실행
+                setInterval(getClock, 1000); // 1초마다 업데이트
+            });
 
 
-            getClock();
-            setInterval(getClock, 1000);
         </script>
 
 
@@ -1984,9 +2094,18 @@
                     원하시는 앱을 선택하시면 길안내가 시작됩니다.
                 </div>
                 <div class="navi_button_wrap">
-                    <a class="navi_button" onclick="fnCallWeb2App('naverMap')"><span>네이버지도</span></a>
-                    <a class="navi_button" onclick="fnCallWeb2App('tmap')"><span>티맵</span></a>
-                    <a class="navi_button" onclick="fnCallWeb2App('kakaoNavi')"><span>카카오내비</span></a>
+                    <a class="navi_button" onclick="fnCallWeb2App('naverMap')">
+                        <img src="./public/img/card/ico_nav03.png" alt="네이버지도" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">
+                        <span>네이버지도</span>
+                    </a>
+                    <a class="navi_button" onclick="fnCallWeb2App('tmap')">
+                        <img src="./public/img/card/ico_nav02.png" alt="티맵" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">
+                        <span>티맵</span>
+                    </a>
+                    <a class="navi_button" onclick="fnCallWeb2App('kakaoNavi')">
+                        <img src="./public/img/card/ico_nav01.png" alt="카카오내비" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle;">
+                        <span>카카오내비</span>
+                    </a>
                 </div>
             </li>
 
@@ -2389,6 +2508,88 @@
                     margin-bottom: 5px;
                     margin-left: 5px;
                 }
+                
+                /* 갤러리 모달 스타일 */
+                .gallery-modal {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.9);
+                    z-index: 9999;
+                    touch-action: manipulation;
+                }
+                
+                .gallery-modal-content {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                .gallery-modal img {
+                    max-width: 90%;
+                    max-height: 90%;
+                    object-fit: contain;
+                    transition: transform 0.3s ease;
+                }
+                
+                .gallery-modal-close {
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    color: white;
+                    font-size: 40px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    z-index: 10001;
+                }
+                
+                .gallery-modal-close:hover {
+                    color: #ccc;
+                }
+                
+                .gallery-modal-nav {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(255, 255, 255, 0.2);
+                    color: white;
+                    border: none;
+                    padding: 20px 15px;
+                    cursor: pointer;
+                    font-size: 24px;
+                    z-index: 10001;
+                    transition: background 0.3s ease;
+                }
+                
+                .gallery-modal-nav:hover {
+                    background: rgba(255, 255, 255, 0.4);
+                }
+                
+                .gallery-modal-prev {
+                    left: 20px;
+                }
+                
+                .gallery-modal-next {
+                    right: 20px;
+                }
+                
+                .gallery-modal-counter {
+                    position: absolute;
+                    bottom: 30px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    color: white;
+                    font-size: 16px;
+                    background: rgba(0, 0, 0, 0.5);
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                }
 
             </style>
 
@@ -2491,46 +2692,106 @@
             <div id="tel_ul_3" class="accst02 anibox hd">
 
                 <div class="pack_wrap clearfix ">
-                    <!-- pack_man pack_woman --><a class="pack">신랑측<i class="fa fa-chevron-down"></i></a>
-                    <ul class="c accordion-list accordion1 cnt2">
+                    <!-- pack_man pack_woman --><a class="pack" onclick="toggleAccordion(this)">신랑측<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 8px; transition: transform 0.3s ease;">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg></a>
+                    <ul class="c accordion-list accordion1 cnt2" style="display: none;">
                         <li class="ft-gowun-bold ro1">
 
                             <a class="holder" onclick="copy_to_clipboard2('actnm-1-1')">
-                                <img src="./public/img/copy.svg">
-                                <span>01012341234</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신랑 김소년</span>
                             </a>
 
                             <a class="accounts" onclick="copy_to_clipboard2('actnm-1-1')">
-                                <span class="bnk">01012341234</span>
-                                <span class="nmb">01012341234</span>
+                                <span class="bnk">카카오뱅크</span>
+                                <span class="nmb">3333-01-1234567</span>
                             </a>
 
-                            <textarea id="actnm-1-1" class="txtnone">01012341234 01012341234</textarea>
-
-                            <div class="quick">
-                            </div>
+                            <textarea id="actnm-1-1" class="txtnone">카카오뱅크 3333-01-1234567 김소년</textarea>
+                            <div class="quick"></div>
+                        </li>
+                        <li class="ft-gowun-bold ro1">
+                            <a class="holder" onclick="copy_to_clipboard2('actnm-1-2')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신랑 아버지</span>
+                            </a>
+                            <a class="accounts" onclick="copy_to_clipboard2('actnm-1-2')">
+                                <span class="bnk">농협은행</span>
+                                <span class="nmb">111-22-333333</span>
+                            </a>
+                            <textarea id="actnm-1-2" class="txtnone">농협은행 111-22-333333 아버지</textarea>
+                            <div class="quick"></div>
+                        </li>
+                        <li class="ft-gowun-bold ro1">
+                            <a class="holder" onclick="copy_to_clipboard2('actnm-1-3')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신랑 어머니</span>
+                            </a>
+                            <a class="accounts" onclick="copy_to_clipboard2('actnm-1-3')">
+                                <span class="bnk">우리은행</span>
+                                <span class="nmb">123-456-789012</span>
+                            </a>
+                            <textarea id="actnm-1-3" class="txtnone">우리은행 123-456-789012 어머니</textarea>
+                            <div class="quick"></div>
                         </li>
                     </ul>
                 </div>
                 <div class="pack_wrap clearfix ">
-                    <!-- pack_man pack_woman --><a class="pack">신부측01012341234<i class="fa fa-chevron-down"></i></a>
-                    <ul class="c accordion-list accordion1 cnt2">
+                    <!-- pack_man pack_woman --><a class="pack" onclick="toggleAccordion(this)">신부측<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="margin-left: 8px; transition: transform 0.3s ease;">
+                        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg></a>
+                    <ul class="c accordion-list accordion1 cnt2" style="display: none;">
                         <li class="ft-gowun-bold ro1">
 
                             <a class="holder" onclick="copy_to_clipboard2('actnm-2-1')">
-                                <img src="./public/img/copy.svg">
-                                <span>01012341234</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신부 강서하</span>
                             </a>
 
                             <a class="accounts" onclick="copy_to_clipboard2('actnm-2-1')">
-                                <span class="bnk">01012341234</span>
-                                <span class="nmb">01012341234</span>
+                                <span class="bnk">카카오뱅크</span>
+                                <span class="nmb">3333-16-6142088</span>
                             </a>
 
-                            <textarea id="actnm-2-1" class="txtnone">01012341234 01012341234</textarea>
-
-                            <div class="quick">
-                            </div>
+                            <textarea id="actnm-2-1" class="txtnone">카카오뱅크 3333-16-6142088 강서하</textarea>
+                            <div class="quick"></div>
+                        </li>
+                        <li class="ft-gowun-bold ro1">
+                            <a class="holder" onclick="copy_to_clipboard2('actnm-2-2')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신부 아버지</span>
+                            </a>
+                            <a class="accounts" onclick="copy_to_clipboard2('actnm-2-2')">
+                                <span class="bnk">하나은행</span>
+                                <span class="nmb">777-888-999999</span>
+                            </a>
+                            <textarea id="actnm-2-2" class="txtnone">하나은행 777-888-999999 아버지</textarea>
+                            <div class="quick"></div>
+                        </li>
+                        <li class="ft-gowun-bold ro1">
+                            <a class="holder" onclick="copy_to_clipboard2('actnm-2-3')">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4V8c0-1.103-.897-2-2-2h-6V4h10v10z" fill="currentColor"/>
+                                </svg>
+                                <span>신부 어머니</span>
+                            </a>
+                            <a class="accounts" onclick="copy_to_clipboard2('actnm-2-3')">
+                                <span class="bnk">신한은행</span>
+                                <span class="nmb">333-44-555555</span>
+                            </a>
+                            <textarea id="actnm-2-3" class="txtnone">신한은행 333-44-555555 어머니</textarea>
+                            <div class="quick"></div>
                         </li>
                     </ul>
                 </div>
@@ -2574,7 +2835,7 @@
         </div>
 
         <div class="banner01 fixed"
-             style="background-image: url('./public/images/temp_2/wedding_1433.jpg');">
+             style="background-image: url('./public/images/33.jpg');">
         </div>
 
         <div class="wave bottom">
@@ -2598,14 +2859,14 @@
 
     <!-- 하단 -->
 
-    <div style="text-align: center;" class="ft-gowun-bold">
-        <div id="kakao-link-btn" onclick="sendLink()"
-             style="padding: 30px 0 10px 0; margin-bottom: -10px; position: relative; z-index: 10; cursor: pointer;">
-            <a class="kkt-share">카카오톡으로 초대장 보내기</a>
-            <input type="hidden" name="kt_01" value="야호">
-            <input type="hidden" name="kt_02" value="그렇습니다.">
-        </div>
-    </div>
+<!--    <div style="text-align: center;" class="ft-gowun-bold">-->
+<!--        <div id="kakao-link-btn" onclick="sendLink()"-->
+<!--             style="padding: 30px 0 10px 0; margin-bottom: -10px; position: relative; z-index: 10; cursor: pointer;">-->
+<!--            <a class="kkt-share">카카오톡으로 초대장 보내기</a>-->
+<!--            <input type="hidden" name="kt_01" value="야호">-->
+<!--            <input type="hidden" name="kt_02" value="그렇습니다.">-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <div class="card-bottom-copyright ft-gowun-bold">
@@ -2768,15 +3029,6 @@
         }
     });
 
-
-    //=============================================
-    // 구글 지도
-
-
-    //=============================================
-    // 갤러리
-
-
     function swipeGallery01() {
         var imglen = $("#swipelistid > .swiper-slide").length;
         //console.log('이미지 갯수: '+imglen);
@@ -2915,11 +3167,148 @@
     }
 
     $(".gallGridWrapper .item").click(function () {
-        zoomGallOpen($(this).index());
+        const imgUrl = $(this).data('url') || $(this).css('background-image').match(/url\(["']?([^"']*)["']?\)/)[1];
+        if (imgUrl) {
+            openGalleryModal(imgUrl);
+        }
     });
 
-    function zoomGallOpen(){
-        console.log("???")
+    function openGalleryModal(imgUrl) {
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('gallery-modal-img');
+        if (modal && modalImg) {
+            modalImg.src = imgUrl;
+            modal.style.display = 'block';
+            
+            // 이미지 목록에서 현재 이미지 인덱스 찾기
+            const allImages = Array.from(document.querySelectorAll('.gallGridWrapper .item')).map(item => {
+                return item.getAttribute('data-url') || item.style.backgroundImage.match(/url\(["']?([^"']*)["']?\)/)[1];
+            }).filter(url => url);
+            
+            const currentIndex = allImages.indexOf(imgUrl);
+            if (currentIndex !== -1) {
+                window.currentGalleryIndex = currentIndex;
+                window.galleryImages = allImages;
+                updateGalleryCounter();
+            }
+        }
+    }
+    
+    function updateGalleryCounter() {
+        const currentSpan = document.getElementById('gallery-current');
+        const totalSpan = document.getElementById('gallery-total');
+        if (currentSpan && totalSpan && window.galleryImages) {
+            currentSpan.textContent = (window.currentGalleryIndex + 1);
+            totalSpan.textContent = window.galleryImages.length;
+        }
+    }
+    
+    // 카피 기능
+    function copy_to_clipboard2(elementId) {
+        const textarea = document.getElementById(elementId);
+        if (textarea) {
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // 모바일 대응
+            
+            try {
+                document.execCommand('copy');
+                alert('클립보드에 복사되었습니다.');
+            } catch (err) {
+                console.log('복사 실패:', err);
+                // 현대적인 방법 시도
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(textarea.value).then(() => {
+                        alert('클립보드에 복사되었습니다.');
+                    }).catch(err => {
+                        console.log('복사 실패:', err);
+                        alert('복사에 실패했습니다. 직접 선택해서 복사해주세요.');
+                    });
+                }
+            }
+        }
+    }
+    
+    // 아코디언 토글 기능
+    function toggleAccordion(element) {
+        const packWrap = element.closest('.pack_wrap');
+        const accordionList = packWrap.querySelector('.accordion-list');
+        const icon = element.querySelector('.chevron-icon');
+        
+        // 아코디언이 열려있는지 확인
+        const isOpen = accordionList.style.display !== 'none' && accordionList.style.display !== '';
+        
+        if (isOpen) {
+            // 닫기 - 원래 아래 화살표로 회전
+            accordionList.style.display = 'none';
+            element.classList.remove('open');
+            icon.style.transform = 'rotate(0deg)';
+        } else {
+            // 열기 - 위 화살표로 회전
+            accordionList.style.display = 'block';
+            element.classList.add('open');
+            icon.style.transform = 'rotate(180deg)';
+        }
+    }
+    
+    // 비디오 음소거 토글 기능
+    function toggleMute() {
+        const video = document.getElementById('main-video');
+        const muteIcon = document.getElementById('mute-icon');
+        
+        if (video.muted) {
+            // 음소거 해제
+            video.muted = false;
+            muteIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+        } else {
+            // 음소거
+            video.muted = true;
+            muteIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+        }
+    }
+    
+    // 사용자 상호작용으로 음성 시작
+    function startAudioWithInteraction() {
+        const video = document.getElementById('main-video');
+        const overlay = document.getElementById('audio-start-overlay');
+        
+        // 비디오 음소거 해제 시도
+        video.muted = false;
+        
+        // 비디오 재생 시도
+        video.play().then(() => {
+            console.log('음성과 함께 비디오 재생 시작');
+            overlay.style.display = 'none';
+        }).catch(error => {
+            console.log('음성 재생 실패, 음소거로 재생:', error);
+            video.muted = true;
+            video.play();
+            overlay.style.display = 'none';
+        });
+    }
+    
+    // 초기 음성 자동 시작 시도
+    function tryAutoplayWithAudio() {
+        const video = document.getElementById('main-video');
+        const overlay = document.getElementById('audio-start-overlay');
+        
+        // 첫 번째 시도: 음성과 함께 자동 재생
+        video.muted = false;
+        
+        video.play().then(() => {
+            console.log('음성과 함께 자동재생 성공');
+            // 성공하면 오버레이 숨김
+            overlay.style.display = 'none';
+        }).catch(error => {
+            console.log('음성 자동재생 차단됨, 사용자 상호작용 필요');
+            // 실패하면 오버레이 표시
+            overlay.style.display = 'flex';
+            
+            // 음소거로 폴백 시도
+            video.muted = true;
+            video.play().catch(fallbackError => {
+                console.log('음소거 자동재생도 실패:', fallbackError);
+            });
+        });
     }
 
     //=============================================
@@ -2937,8 +3326,316 @@
             classToAdd: 'animate',
             offset: 100
         });
+        
+        // 갤러리 모달 기능 초기화
+        initGalleryModal();
+        
+        // 이미지 최적화 초기화
+        optimizeImages();
+        
+        // 메인 동영상 로드 체크
+        initMainVideo();
+        
+        // 음성 자동 시작 시도
+        setTimeout(() => {
+            tryAutoplayWithAudio();
+        }, 1000);
 
     });
+    
+    // 갤러리 모달 기능
+    function initGalleryModal() {
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('gallery-modal-img');
+        const closeBtn = document.querySelector('.gallery-modal-close');
+        const prevBtn = document.querySelector('.gallery-modal-prev');
+        const nextBtn = document.querySelector('.gallery-modal-next');
+        const currentSpan = document.getElementById('gallery-current');
+        const totalSpan = document.getElementById('gallery-total');
+        
+        let currentImageIndex = 0;
+        let images = [];
+        
+        // 모든 갤러리 아이템 수집 및 lazy loading 구현
+        const galleryItems = document.querySelectorAll('.gallGridWrapper .item');
+        galleryItems.forEach((item, index) => {
+            const imgUrl = item.getAttribute('data-url') || item.style.backgroundImage.match(/url\(["']?([^"']*)["']?\)/)?.[1];
+            if (imgUrl) {
+                images.push(imgUrl);
+                // 커서 포인터 스타일 추가
+                item.style.cursor = 'pointer';
+                
+                // lazy loading 구현
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = new Image();
+                            img.onload = () => {
+                                entry.target.style.backgroundImage = `url('${imgUrl}')`;
+                            };
+                            img.src = imgUrl;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                // 처음에는 placeholder 이미지로 설정
+                if (!item.style.backgroundImage.includes(imgUrl)) {
+                    observer.observe(item);
+                }
+            }
+        });
+        
+        if (totalSpan) totalSpan.textContent = images.length;
+        
+        function openModal(index) {
+            currentImageIndex = index;
+            updateModal();
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // 배경 스크롤 복원
+        }
+        
+        function updateModal() {
+            if (images.length > 0) {
+                modalImg.src = images[currentImageIndex];
+                currentSpan.textContent = currentImageIndex + 1;
+            }
+        }
+        
+        function showPrevious() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            updateModal();
+        }
+        
+        function showNext() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateModal();
+        }
+        
+        // 이벤트 리스너들
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', showPrevious);
+        nextBtn.addEventListener('click', showNext);
+        
+        // 모달 배경 클릭 시 닫기
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // 키보드 이벤트
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'block') {
+                switch(e.key) {
+                    case 'Escape':
+                        closeModal();
+                        break;
+                    case 'ArrowLeft':
+                        showPrevious();
+                        break;
+                    case 'ArrowRight':
+                        showNext();
+                        break;
+                }
+            }
+        });
+        
+        // 터치 스와이프 지원
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        modal.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        modal.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    showNext(); // 오른쪽 스와이프 -> 다음 이미지
+                } else {
+                    showPrevious(); // 왼쪽 스와이프 -> 이전 이미지
+                }
+            }
+        }
+    }
+    
+    // 이미지 최적화 함수
+    function optimizeImages() {
+        // 중요한 이미지만 미리 로드 (메인 이미지, 첫 번째 갤러리 이미지)
+        const criticalImages = [
+            './public/img/index.mp4', // 메인 비디오
+            './public/images/1.jpg',   // 첫 번째 갤러리 이미지
+        ];
+        
+        criticalImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+        
+        // 갤러리 이미지 지연 로딩
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bgImage = entry.target.style.backgroundImage;
+                    if (bgImage && bgImage.includes('url')) {
+                        // 이미 로드됨
+                        return;
+                    }
+                    
+                    const imgUrl = entry.target.getAttribute('data-url');
+                    if (imgUrl) {
+                        const img = new Image();
+                        img.onload = () => {
+                            entry.target.style.backgroundImage = `url('${imgUrl}')`;
+                        };
+                        img.src = imgUrl;
+                        galleryObserver.unobserve(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // 모든 갤러리 아이템에 observer 적용
+        document.querySelectorAll('.gallGridWrapper .item[data-url]').forEach(item => {
+            galleryObserver.observe(item);
+        });
+    }
+
+    // 메인 동영상 초기화
+    function initMainVideo() {
+        const video = document.getElementById('main-video');
+        const image = document.getElementById('main-image');
+        
+        if (video && image) {
+            console.log('동영상 초기화 시작');
+            console.log('동영상 경로:', video.querySelector('source').src);
+            
+            // 동영상 로드 성공 시
+            video.addEventListener('loadeddata', () => {
+                console.log('동영상 로드 성공 - readyState:', video.readyState);
+                video.style.display = 'block';
+                image.style.display = 'none';
+            });
+            
+            video.addEventListener('canplay', () => {
+                console.log('동영상 재생 가능');
+            });
+            
+            // 동영상 로드 실패 시
+            video.addEventListener('error', (e) => {
+                console.log('동영상 로드 실패:', e);
+                console.log('Error code:', video.error ? video.error.code : 'unknown');
+                video.style.display = 'none';
+                image.style.display = 'block';
+            });
+            
+            // 소스 에러
+            video.querySelectorAll('source').forEach(source => {
+                source.addEventListener('error', (e) => {
+                    console.log('Source 에러:', source.src, e);
+                });
+            });
+            
+            // 2초 후 readyState 체크하여 동영상 표시
+            setTimeout(() => {
+                console.log('동영상 readyState 체크:', video.readyState);
+                if (video.readyState >= 3) { // HAVE_FUTURE_DATA 이상이면 재생 가능
+                    console.log('동영상 준비 완료, 동영상 표시');
+                    console.log('동영상 현재 스타일:', video.style.cssText);
+                    console.log('이미지 현재 스타일:', image.style.cssText);
+                    video.style.display = 'block';
+                    video.style.zIndex = '10'; // z-index 추가
+                    video.style.position = 'relative'; // position 추가
+                    image.style.display = 'none';
+                    
+                    // 강제로 동영상 재생 시도
+                    video.play().then(() => {
+                        console.log('동영상 재생 성공');
+                    }).catch((error) => {
+                        console.log('동영상 재생 실패:', error);
+                        // 재생 실패 시 이미지로 대체
+                        video.style.display = 'none';
+                        image.style.display = 'block';
+                    });
+                    
+                    console.log('변경 후 동영상 스타일:', video.style.cssText);
+                } else if (video.readyState === 0) {
+                    console.log('동영상 로드 실패, 이미지로 대체');
+                    video.style.display = 'none';
+                    image.style.display = 'block';
+                } else {
+                    console.log('동영상 로딩 중... readyState:', video.readyState);
+                }
+            }, 2000);
+        }
+    }
+    
+    // 내비게이션 앱 호출 함수
+    function fnCallWeb2App(appType) {
+        const address = "서울 강동구 천호대로 1102";
+        const lat = "37.5350565";
+        const lng = "127.1339205";
+        const name = "강동웨딩 KDW 마이더스 홀";
+        
+        let url = "";
+        
+        switch(appType) {
+            case 'naverMap':
+                // 네이버지도 URL 스킴
+                url = `nmap://search?query=${encodeURIComponent(address)}&appname=com.example.myapp`;
+                // 웹 백업 URL
+                const naverWebUrl = `https://map.naver.com/v5/search/${encodeURIComponent(address)}`;
+                break;
+                
+            case 'tmap':
+                // 티맵 URL 스킴
+                url = `tmap://search?name=${encodeURIComponent(name)}&lon=${lng}&lat=${lat}`;
+                // 웹 백업 URL
+                const tmapWebUrl = `https://apis.openapi.sk.com/tmap/app/routes/navigation?startName=현재위치&goalName=${encodeURIComponent(name)}&goalX=${lng}&goalY=${lat}`;
+                break;
+                
+            case 'kakaoNavi':
+                // 카카오내비 URL 스킴
+                url = `kakaonavi://navigate?coord_type=wgs84&ep=${lng},${lat}&destination=${encodeURIComponent(name)}`;
+                // 웹 백업 URL  
+                const kakaoWebUrl = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`;
+                break;
+        }
+        
+        // URL 스킴으로 앱 실행 시도
+        if (url) {
+            window.location.href = url;
+            
+            // 앱이 설치되지 않은 경우 웹 버전으로 리다이렉트
+            setTimeout(() => {
+                switch(appType) {
+                    case 'naverMap':
+                        window.open(`https://map.naver.com/v5/search/${encodeURIComponent(address)}`, '_blank');
+                        break;
+                    case 'tmap':
+                        window.open(`https://www.tmap.co.kr`, '_blank');
+                        break;
+                    case 'kakaoNavi':
+                        window.open(`https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`, '_blank');
+                        break;
+                }
+            }, 1500);
+        }
+    }
 
 
     //=============================================
@@ -3002,9 +3699,9 @@
                 popup.style.display = "block";
                 
                 // 기존 내용으로 채우기
-                const nameInput = document.querySelector("input[name='gustbk_name']");
-                const passwordInput = document.querySelector("input[name='gustbk_password']");
-                const noteTextarea = document.querySelector("textarea[name='gustbk_note']");
+                const nameInput = popup.querySelector("input[name='name']");
+                const passwordInput = popup.querySelector("input[name='password']");
+                const noteTextarea = popup.querySelector("textarea[name='note']");
                 
                 if (nameInput) nameInput.value = entry.name;
                 if (passwordInput) passwordInput.value = entry.password;
@@ -3019,10 +3716,11 @@
         }
     }
     
-    function editGuestbookEntry(id, password, newNote) {
+    function editGuestbookEntry(id, password, newName, newNote) {
         const data = getGuestbookData();
         const entry = data.find(item => item.id === id);
         if (entry && entry.password === password) {
+            entry.name = newName;
             entry.note = newNote;
             entry.date = new Date().toLocaleString();
             saveGuestbookData(data);
@@ -3056,9 +3754,10 @@
         previewGrid.innerHTML = "";
         
         if (data.length === 0) {
-            // 방명록이 없으면 미리보기도 숨김
+            // 방명록이 없으면 "없습니다" 메시지 표시
+            previewGrid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: #6c757d; font-size: 14px;">작성된 축하글이 없습니다.<br>첫 번째 축하글을 남겨보세요! 💝</div>';
             const previewContainer = document.getElementById('guestbook-preview-container');
-            previewContainer.style.display = 'none';
+            previewContainer.style.display = 'block';
             return;
         }
         
@@ -3099,7 +3798,7 @@
     // 방명록 렌더링
     // 방명록 렌더링 (카드 스타일)
     function renderGuestbook() {
-        const data = getGuestbookData();
+        const data = getGuestbookData().sort((a, b) => b.id - a.id); // 최신순 정렬 (DESC)
         const grid = document.querySelector("#guestbook-grid");
         if (!grid) return; // 그리드 요소가 없으면 종료
         
@@ -3195,7 +3894,7 @@
             // 수정 모드인지 확인
             if (editMode.isEditing) {
                 // 수정 처리
-                editGuestbookEntry(editMode.entryId, editMode.password, note);
+                editGuestbookEntry(editMode.entryId, editMode.password, name, note);
                 
                 // 수정 모드 리셋
                 editMode.isEditing = false;
@@ -3295,6 +3994,19 @@
 
 </script>
 
+
+<!-- 갤러리 모달 -->
+<div id="gallery-modal" class="gallery-modal">
+    <div class="gallery-modal-content">
+        <span class="gallery-modal-close">&times;</span>
+        <button class="gallery-modal-nav gallery-modal-prev">❮</button>
+        <img id="gallery-modal-img" src="" alt="갤러리 이미지">
+        <button class="gallery-modal-nav gallery-modal-next">❯</button>
+        <div class="gallery-modal-counter">
+            <span id="gallery-current">1</span> / <span id="gallery-total">1</span>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps-geocoder.js"></script>
 </body>
