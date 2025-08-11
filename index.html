@@ -1622,6 +1622,33 @@
                     requestAnimationFrame(animate)
                 }
                 
+                // GPU 가속 높이 애니메이션
+                function animateHeight(element, targetHeight, duration = 500) {
+                    const startHeight = element.offsetHeight
+                    const heightDiff = targetHeight - startHeight
+                    const startTime = performance.now()
+                    
+                    element.style.willChange = 'max-height'
+                    
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime
+                        const progress = Math.min(elapsed / duration, 1)
+                        const easeProgress = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+                        
+                        const currentHeight = startHeight + (heightDiff * easeProgress)
+                        element.style.maxHeight = currentHeight + 'px'
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animate)
+                        } else {
+                            element.style.willChange = 'auto'
+                            isAnimating = false
+                        }
+                    }
+                    
+                    requestAnimationFrame(animate)
+                }
+                
                 const gallMore = (e) => {
                     console.log('더보기 버튼 클릭됨!')
                     
@@ -1631,6 +1658,7 @@
                     }
                     
                     isGallOpen = !isGallOpen
+                    isAnimating = true
                     console.log('isGallOpen 상태:', isGallOpen)
                     
                     const gallWrapper = document.querySelector('.gallGridWrapper')
@@ -1639,21 +1667,20 @@
                     gallWrapper.style.height = ''
                     
                     if (isGallOpen) {
-                        console.log('더보기 모드 시작')
+                        console.log('더보기 모드 - list 이미지 유지')
                         
-                        // 이미지 교체
-                        document.querySelectorAll('.gallGridWrapper [data-url]').forEach(item => {
-                            item.style.backgroundImage = `url('${item.getAttribute('data-url')}')`
-                        })
+                        // 이미지는 list 버전 그대로 유지 (교체하지 않음)
+                        // 높이만 애니메이션으로 확장
                         
-                        // max-height 설정 (height 속성 제거했으므로 max-height가 적용됨)
-                        gallWrapper.style.maxHeight = gallWrapper.scrollHeight + 'px'
-                        console.log('높이 변경:', gallWrapper.scrollHeight + 'px')
+                        const targetHeight = gallWrapper.scrollHeight
+                        animateHeight(gallWrapper, targetHeight, 600)
+                        
+                        console.log('높이 애니메이션:', targetHeight + 'px')
                         
                         e.innerHTML = '접기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease; transform: rotate(180deg);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     } else {
-                        console.log('접기 모드 시작')
-                        gallWrapper.style.maxHeight = '386.5px'
+                        console.log('접기 모드')
+                        animateHeight(gallWrapper, 386.5, 400)
                         e.innerHTML = '더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     }
                 }
@@ -3309,9 +3336,11 @@
     }
 
     $(".gallGridWrapper .item").click(function () {
-        const imgUrl = $(this).data('url') || $(this).css('background-image').match(/url\(["']?([^"']*)["']?\)/)[1];
-        if (imgUrl) {
-            openGalleryModal(imgUrl);
+        // 디테일 모달에는 data-url의 큰 이미지 사용
+        const detailImgUrl = $(this).attr('data-url');
+        if (detailImgUrl) {
+            console.log('디테일 모달 열기:', detailImgUrl);
+            openGalleryModal(detailImgUrl);
         }
     });
 
