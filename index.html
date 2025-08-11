@@ -140,6 +140,11 @@
         #mute-toggle:hover {
             background: rgba(0,0,0,0.7) !important;
         }
+
+        .gallGridWrapper {
+            transition: transform 0.7s ease-out;
+            will-change: transform;
+        }
         
 
         .private-attend .wrt .i {
@@ -1171,7 +1176,7 @@
                                 <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
                             </svg>
                         </button>
-                        <img id="main-image" src="./public/images/55.png" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; transition: opacity 0.6s ease;">
+                        <img id="main-image" src="./public/images/55.png" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; transition: opacity 0.6s ease;">
                         <div class="imgCover" style="z-index: 5;"></div>
                     </div>
                     <div class="wave bottom">
@@ -1325,7 +1330,7 @@
                                         <span class="n">
                                             <span class="flower off"
                                                   style="color:#888;font-size:13px;width:auto;margin:0;">(故)</span>                                            <span
-                                                    class="on"><span>아부지</span></span>
+                                                    class="on"><span>강태근</span></span>
                                         </span>
                                 <span class="n_baptismal none"></span>
                             </div>
@@ -1334,7 +1339,7 @@
                                         <span class="n">
                                             <span class="flower off"
                                                   style="color:#888;font-size:13px;width:auto;margin:0;">(故)</span>                                            <span
-                                                    class="on"><span>어머니</span></span>
+                                                    class="on"><span>김미자</span></span>
                                         </span>
                                 <span class="n_baptismal none"></span>
                             </div>
@@ -1386,98 +1391,108 @@
             <div class="gallGridWrapper" style="height: 386.5px;">
                 <div class="item"
                      data-url="./public/images/21.jpg"
-                     style="background-image: url(./public/images/21.jpg);">
+                     style="background-image: url(./public/images/list/21.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/1.jpg"
-                     style="background-image: url(./public/images/1.jpg);">
+                     style="background-image: url(./public/images/list/1.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/2.jpg"
-                     style="background-image: url(./public/images/2.jpg);">
+                     style="background-image: url(./public/images/list/2.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/3.jpg"
-                     style="background-image: url(./public/images/3.jpg);">
+                     style="background-image: url(./public/images/list/3.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/19.jpg"
-                     style="background-image: url(./public/images/19.jpg);">
+                     style="background-image: url(./public/images/list/19.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/20.jpg"
-                     style="background-image: url(./public/images/20.jpg);">
+                     style="background-image: url(./public/images/list/20.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/5.jpg);">
+                     style="background-image: url(./public/images/list/5.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
                      data-url="./public/images/6.jpg"
-                     style="background-image: url(./public/images/6.jpg);">
+                     style="background-image: url(./public/images/list/6.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     style="background-image: url(./public/images/7.jpg);">
+                     data-url="./public/images/7.jpg"
+                     style="background-image: url(./public/images/list/7.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/8.jpg">
+                     data-url="./public/images/8.jpg"
+                    style="background-image: url(./public/images/list/8.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/10.jpg">
+                     data-url="./public/images/10.jpg"
+                     style="background-image: url(./public/images/list/10.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/18.jpg">
+                     data-url="./public/images/18.jpg"
+                    style="background-image: url(./public/images/list/18.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/12.jpg">
+                     data-url="./public/images/12.jpg"
+                     style="background-image: url(./public/images/list/12.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/13.jpg">
+                     data-url="./public/images/13.jpg"
+                     style="background-image: url(./public/images/list/13.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/14.jpg">
+                     data-url="./public/images/14.jpg"
+                     style="background-image: url(./public/images/list/14.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/15.jpg">
+                     data-url="./public/images/15.jpg"
+                     style="background-image: url(./public/images/list/15.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/17.jpg">
+                     data-url="./public/images/17.jpg"
+                     style="background-image: url(./public/images/list/17.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
                 <div class="item"
-                     data-url="./public/images/16.jpg">
+                     data-url="./public/images/16.jpg"
+                     style="background-image: url(./public/images/list/16.jpg);">
                     <img src="./public/img/card/rectangle.png" class="box rectangle">
                     <img src="./public/img/card/square.png" class="box square">
                 </div>
@@ -3004,26 +3019,26 @@
     }
 
     $(document).ready(function () {
-       console.log('%c🎊 축하합니다! 개발자의 눈을 발견했습니다! 🎊',
-            'background: linear-gradient(90deg, #ff3b30, #ff9500, #ffcc00, #34c759); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 16px; font-weight: 800;');
+        console.log('%c🎊 축하합니다! 개발자의 눈을 발견했습니다! 🎊',
+            'background: linear-gradient(90deg, #ff69b4, #ff6b9d, #ffd93d, #6c5ce7, #a29bfe, #fd79a8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 16px; font-weight: 800; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);');
 
         console.log('%c💝 제 모청을 봐주셔서 감사합니당 💝',
-            'color: #ff3b30; font-size: 12px;');
+            'color: #ff69b4; font-size: 14px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0,0,0,0.2);');
 
-        console.log(`%c🌸36살 조금은 늦은 나이에 어찌저찌 결혼이라는 것을 하네요.😆`,
-            'color: #ff9500; font-size: 12px;');
+        console.log('%c🌸 36살 조금은 늦은 나이에 어찌저찌 결혼이라는 것을 하네요.😆',
+            'color: #ffd93d; font-size: 12px; font-weight: bold;');
 
         console.log('%c🎭 이왕 결혼 하는거 오랜시간 평화롭게 인생이라는 게임의 수많은 퀘스트를 잘 깨보겠습니다. ⭐️',
-            'color: #ffcc00; font-size: 12px;');
+            'color: #6c5ce7; font-size: 12px; font-weight: bold;');
 
         console.log('%c🫶 아니 근데 왜 개발자모드를 키신거죠? "리얼 개발 미친자" 시군요? 😂',
-            'color: #34c759; font-size: 12px;');
+            'color: #a29bfe; font-size: 12px; font-weight: bold;');
 
-        console.log('%c🔥카톡 주시면 소정의 미친자 소리를 선물해드리겠습니다. 🤣‍',
-            'color: #ff3b30; font-size: 12px;');
+        console.log('%c🔥 카톡 주시면 소정의 미친자 소리를 선물해드리겠습니다. 🤣',
+            'color: #fd79a8; font-size: 12px; font-weight: bold;');
 
         console.log('%c🙇🏻‍♀️ 모청 봐주셔서 감사합니다! - 서하쓰 드림 💌',
-            'color: #ff9500; font-size: 12px;');
+            'color: #ff6b9d; font-size: 14px; font-weight: bold; text-decoration: underline;');
         
         try {
             naver.maps.onJSContentLoaded = naverMapXY;
