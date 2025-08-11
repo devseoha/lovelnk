@@ -142,8 +142,9 @@
         }
 
         .gallGridWrapper {
-            transition: transform 0.7s ease-out;
-            will-change: transform;
+            overflow: hidden;
+            transition: max-height 0.45s ease;
+            will-change: max-height;
         }
 
 
@@ -1388,7 +1389,7 @@
         <!--<div class="pic_0_del" style="height: 70px;"></div>-->
         <div class="clearfix anibox hd">
 
-            <div class="gallGridWrapper" style="height: 386.5px;">
+            <div class="gallGridWrapper" style="max-height: 386.5px;">
                 <div class="item"
                      data-url="./public/images/21.jpg"
                      style="background-image: url(./public/images/list/21.jpg);">
@@ -1529,101 +1530,10 @@
                     })
                 }
                 
-                // 점진적 이미지 교체 (부드러운 전환 효과)
-                function replaceImageGradually(item, newImageUrl, delay = 0) {
-                    setTimeout(async () => {
-                        try {
-                            // 이미지 프리로드
-                            await preloadImage(newImageUrl)
-                            
-                            // 부드러운 전환 효과
-                            item.style.transition = 'opacity 0.2s ease, transform 0.2s ease'
-                            item.style.opacity = '0.7'
-                            item.style.transform = 'scale(0.98)'
-                            
-                            setTimeout(() => {
-                                item.style.backgroundImage = `url('${newImageUrl}')`
-                                item.style.opacity = '1'
-                                item.style.transform = 'scale(1)'
-                                item.classList.add('image-loaded')
-                            }, 100)
-                            
-                        } catch (error) {
-                            console.warn('이미지 로딩 실패:', newImageUrl)
-                            item.style.opacity = '1'
-                            item.style.transform = 'scale(1)'
-                        }
-                    }, delay)
-                }
+                // 더보기 시 이미지 교체 로직 제거 (리스트 이미지 유지)
                 
-                // 스마트 배치 로딩 (화면에 보이는 순서대로)
-                function loadImagesInBatches(items, batchSize = 3) {
-                    let currentBatch = 0
-                    const batches = []
-                    
-                    // 화면에 보이는 이미지를 우선순위로 정렬
-                    const sortedItems = Array.from(items).sort((a, b) => {
-                        const rectA = a.getBoundingClientRect()
-                        const rectB = b.getBoundingClientRect()
-                        return rectA.top - rectB.top
-                    })
-                    
-                    // 배치로 분할
-                    for (let i = 0; i < sortedItems.length; i += batchSize) {
-                        batches.push(sortedItems.slice(i, i + batchSize))
-                    }
-                    
-                    function loadNextBatch() {
-                        if (currentBatch >= batches.length) {
-                            isAnimating = false
-                            console.log('모든 이미지 로딩 완료')
-                            return
-                        }
-                        
-                        const batch = batches[currentBatch]
-                        batch.forEach((item, index) => {
-                            const detailUrl = item.getAttribute('data-url')
-                            if (detailUrl && !item.classList.contains('image-loaded')) {
-                                replaceImageGradually(item, detailUrl, index * 60)
-                            }
-                        })
-                        
-                        currentBatch++
-                        // 다음 배치까지 적절한 지연시간
-                        setTimeout(loadNextBatch, 200 + (batch.length * 50))
-                    }
-                    
-                    loadNextBatch()
-                }
-                
-                // GPU 가속 높이 애니메이션
-                function animateHeight(element, targetHeight, duration = 600) {
-                    const startHeight = element.offsetHeight || parseFloat(element.style.maxHeight) || 386.5
-                    const heightDiff = targetHeight - startHeight
-                    const startTime = performance.now()
-                    
-                    element.style.willChange = 'height, max-height'
-                    
-                    function animate(currentTime) {
-                        const elapsed = currentTime - startTime
-                        const progress = Math.min(elapsed / duration, 1)
-                        const easeProgress = 1 - Math.pow(1 - progress, 3) // easeOutCubic
-                        
-                        const currentHeight = startHeight + (heightDiff * easeProgress)
-                        element.style.maxHeight = currentHeight + 'px'
-                        
-                        if (progress < 1) {
-                            requestAnimationFrame(animate)
-                        } else {
-                            element.style.willChange = 'auto'
-                        }
-                    }
-                    
-                    requestAnimationFrame(animate)
-                }
-                
-                // GPU 가속 높이 애니메이션
-                function animateHeight(element, targetHeight, duration = 500) {
+                // GPU 가속 높이 애니메이션 (단일 정의)
+                function animateHeight(element, targetHeight, duration = 450) {
                     const startHeight = element.offsetHeight
                     const heightDiff = targetHeight - startHeight
                     const startTime = performance.now()
@@ -1671,16 +1581,15 @@
                         
                         // 이미지는 list 버전 그대로 유지 (교체하지 않음)
                         // 높이만 애니메이션으로 확장
-                        
                         const targetHeight = gallWrapper.scrollHeight
-                        animateHeight(gallWrapper, targetHeight, 600)
+                        animateHeight(gallWrapper, targetHeight, 450)
                         
                         console.log('높이 애니메이션:', targetHeight + 'px')
                         
                         e.innerHTML = '접기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease; transform: rotate(180deg);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     } else {
                         console.log('접기 모드')
-                        animateHeight(gallWrapper, 386.5, 400)
+                        animateHeight(gallWrapper, 386.5, 350)
                         e.innerHTML = '더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     }
                 }
@@ -3605,33 +3514,7 @@
             img.src = src;
         });
 
-        // 갤러리 이미지 지연 로딩
-        const galleryObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const bgImage = entry.target.style.backgroundImage;
-                    if (bgImage && bgImage.includes('url')) {
-                        // 이미 로드됨
-                        return;
-                    }
-
-                    const imgUrl = entry.target.getAttribute('data-url');
-                    if (imgUrl) {
-                        const img = new Image();
-                        img.onload = () => {
-                            entry.target.style.backgroundImage = `url('${imgUrl}')`;
-                        };
-                        img.src = imgUrl;
-                        galleryObserver.unobserve(entry.target);
-                    }
-                }
-            });
-        }, { threshold: 0.1 });
-
-        // 모든 갤러리 아이템에 observer 적용
-        document.querySelectorAll('.gallGridWrapper .item[data-url]').forEach(item => {
-            galleryObserver.observe(item);
-        });
+         // 갤러리 이미지 지연 로딩 제거: 리스트 이미지는 초기 로드 그대로 유지
     }
 
     // 메인 동영상 초기화
