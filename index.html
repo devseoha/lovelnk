@@ -141,11 +141,23 @@
             background: rgba(0,0,0,0.7) !important;
         }
 
+        /* 갤러리 더보기 애니메이션 - GPU 가속 최적화 */
         .gallGridWrapper {
-            transition: transform 0.7s ease-out;
-            will-change: transform;
+            overflow: hidden !important;
+            will-change: transform, max-height !important;
+            transform: translateZ(0) !important; /* GPU 레이어 강제 생성 */
+            backface-visibility: hidden !important;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
         }
         
+        .gallGridWrapper.animating {
+            will-change: transform, max-height !important;
+        }
+        
+        .gallGridWrapper.animation-complete {
+            will-change: auto !important;
+        }
+
 
         .private-attend .wrt .i {
             display: initial;
@@ -1388,7 +1400,7 @@
         <!--<div class="pic_0_del" style="height: 70px;"></div>-->
         <div class="clearfix anibox hd">
 
-            <div class="gallGridWrapper" style="height: 386.5px;">
+            <div class="gallGridWrapper" style="max-height: 386.5px;">
                 <div class="item"
                      data-url="./public/images/21.jpg"
                      style="background-image: url(./public/images/list/21.jpg);">
@@ -1508,20 +1520,88 @@
             </div>
             <script>
                 let isGallOpen = false
+                let isAnimating = false
+                
+                // GPU 가속 애니메이션 함수
+                function animateGalleryHeight(targetHeight, duration = 500) {
+                    if (isAnimating) return
+                    
+                    const gallWrapper = document.querySelector('.gallGridWrapper')
+                    
+                    // 현재 높이 가져오기 (maxHeight에서)
+                    let startHeight = gallWrapper.offsetHeight
+                    if (!startHeight || startHeight === 0) {
+                        startHeight = parseFloat(gallWrapper.style.maxHeight) || 386.5
+                    }
+                    
+                    const heightDiff = targetHeight - startHeight
+                    const startTime = performance.now()
+                    
+                    console.log('애니메이션 시작:', {startHeight, targetHeight, heightDiff}) // 디버깅용
+                    
+                    isAnimating = true
+                    gallWrapper.classList.add('animating')
+                    
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime
+                        const progress = Math.min(elapsed / duration, 1)
+                        
+                        // easeOutCubic easing function
+                        const easeProgress = 1 - Math.pow(1 - progress, 3)
+                        
+                        const currentHeight = startHeight + (heightDiff * easeProgress)
+                        gallWrapper.style.maxHeight = currentHeight + 'px'
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animate)
+                        } else {
+                            // 애니메이션 완료
+                            isAnimating = false
+                            gallWrapper.classList.remove('animating')
+                            gallWrapper.classList.add('animation-complete')
+                            
+                            // will-change 정리를 위한 지연
+                            setTimeout(() => {
+                                gallWrapper.classList.remove('animation-complete')
+                            }, 100)
+                        }
+                    }
+                    
+                    requestAnimationFrame(animate)
+                }
+                
                 const gallMore = (e) => {
+                    console.log('더보기 클릭됨, isAnimating:', isAnimating, 'isGallOpen:', isGallOpen) // 디버깅용
+                    
+                    if (isAnimating) return // 애니메이션 중이면 중복 실행 방지
+                    
                     isGallOpen = !isGallOpen
                     const icon = e.querySelector('.chevron-icon')
+                    const gallWrapper = document.querySelector('.gallGridWrapper')
                     
                     if (isGallOpen) {
+                        console.log('더보기 모드 - 이미지 로딩 시작')
+                        
                         // 더보기 - 모든 이미지 표시
                         document.querySelectorAll('.gallGridWrapper [data-url]').forEach(item => {
                             item.style.backgroundImage = `url('${item.getAttribute('data-url')}')`
                         })
-                        document.querySelector('.gallGridWrapper').style.height = document.querySelector('.gallGridWrapper').scrollHeight + 'px'
+                        
+                        // 실제 컨텐츠 높이 계산
+                        const originalMaxHeight = gallWrapper.style.maxHeight
+                        gallWrapper.style.maxHeight = 'none'
+                        const fullHeight = gallWrapper.scrollHeight
+                        gallWrapper.style.maxHeight = originalMaxHeight
+                        
+                        console.log('전체 높이:', fullHeight)
+                        
+                        animateGalleryHeight(fullHeight, 500)
                         e.innerHTML = '접기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease; transform: rotate(180deg);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     } else {
+                        console.log('접기 모드')
+                        
                         // 접기 - 원래 높이로 복원
-                        document.querySelector('.gallGridWrapper').style.height = '386.5px'
+                        animateGalleryHeight(386.5, 500)
                         e.innerHTML = '더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     }
                 }
@@ -1562,19 +1642,19 @@
                                 cHeight = cHeight / 2 - 3
                             }
                             if (!isGallOpen) {
-                                document.querySelector(`.gallGridWrapper`).style.height = ((cHeight * 3) + 12) + 'px'
+                                document.querySelector(`.gallGridWrapper`).style.maxHeight = ((cHeight * 3) + 12) + 'px'
                             } else {
-                                document.querySelector(`.gallGridWrapper`).style.height = ''
+                                document.querySelector(`.gallGridWrapper`).style.maxHeight = 'none'
                             }
                         } else {
                             document.querySelector(`.gallLayerWrapper .moreBtnWrap`).style.display = 'none'
                         }
                     } else {
                         if (!isGallOpen) {
-                            document.querySelector(`.gallGridWrapper`).style.height =
+                            document.querySelector(`.gallGridWrapper`).style.maxHeight =
                                 (((document.querySelector(`.gallGridWrapper .item`).clientHeight) * 3) + (5 * 2.5) + 5) + 'px'
                         } else {
-                            document.querySelector(`.gallGridWrapper`).style.height = ''
+                            document.querySelector(`.gallGridWrapper`).style.maxHeight = 'none'
                         }
                     }
                 }
@@ -3443,7 +3523,7 @@
             const img = new Image();
             img.src = src;
         });
-        
+
         // 갤러리 이미지 지연 로딩
         const galleryObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -3453,7 +3533,7 @@
                         // 이미 로드됨
                         return;
                     }
-                    
+
                     const imgUrl = entry.target.getAttribute('data-url');
                     if (imgUrl) {
                         const img = new Image();
@@ -3466,7 +3546,7 @@
                 }
             });
         }, { threshold: 0.1 });
-        
+
         // 모든 갤러리 아이템에 observer 적용
         document.querySelectorAll('.gallGridWrapper .item[data-url]').forEach(item => {
             galleryObserver.observe(item);
