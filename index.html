@@ -1508,20 +1508,152 @@
             </div>
             <script>
                 let isGallOpen = false
+                let isAnimating = false
+                let preloadedImages = new Set()
+                
+                // 이미지 프리로딩 함수
+                function preloadImage(url) {
+                    return new Promise((resolve, reject) => {
+                        if (preloadedImages.has(url)) {
+                            resolve(url)
+                            return
+                        }
+                        
+                        const img = new Image()
+                        img.onload = () => {
+                            preloadedImages.add(url)
+                            resolve(url)
+                        }
+                        img.onerror = reject
+                        img.src = url
+                    })
+                }
+                
+                // 점진적 이미지 교체 (부드러운 전환 효과)
+                function replaceImageGradually(item, newImageUrl, delay = 0) {
+                    setTimeout(async () => {
+                        try {
+                            // 이미지 프리로드
+                            await preloadImage(newImageUrl)
+                            
+                            // 부드러운 전환 효과
+                            item.style.transition = 'opacity 0.2s ease, transform 0.2s ease'
+                            item.style.opacity = '0.7'
+                            item.style.transform = 'scale(0.98)'
+                            
+                            setTimeout(() => {
+                                item.style.backgroundImage = `url('${newImageUrl}')`
+                                item.style.opacity = '1'
+                                item.style.transform = 'scale(1)'
+                                item.classList.add('image-loaded')
+                            }, 100)
+                            
+                        } catch (error) {
+                            console.warn('이미지 로딩 실패:', newImageUrl)
+                            item.style.opacity = '1'
+                            item.style.transform = 'scale(1)'
+                        }
+                    }, delay)
+                }
+                
+                // 스마트 배치 로딩 (화면에 보이는 순서대로)
+                function loadImagesInBatches(items, batchSize = 3) {
+                    let currentBatch = 0
+                    const batches = []
+                    
+                    // 화면에 보이는 이미지를 우선순위로 정렬
+                    const sortedItems = Array.from(items).sort((a, b) => {
+                        const rectA = a.getBoundingClientRect()
+                        const rectB = b.getBoundingClientRect()
+                        return rectA.top - rectB.top
+                    })
+                    
+                    // 배치로 분할
+                    for (let i = 0; i < sortedItems.length; i += batchSize) {
+                        batches.push(sortedItems.slice(i, i + batchSize))
+                    }
+                    
+                    function loadNextBatch() {
+                        if (currentBatch >= batches.length) {
+                            isAnimating = false
+                            console.log('모든 이미지 로딩 완료')
+                            return
+                        }
+                        
+                        const batch = batches[currentBatch]
+                        batch.forEach((item, index) => {
+                            const detailUrl = item.getAttribute('data-url')
+                            if (detailUrl && !item.classList.contains('image-loaded')) {
+                                replaceImageGradually(item, detailUrl, index * 60)
+                            }
+                        })
+                        
+                        currentBatch++
+                        // 다음 배치까지 적절한 지연시간
+                        setTimeout(loadNextBatch, 200 + (batch.length * 50))
+                    }
+                    
+                    loadNextBatch()
+                }
+                
+                // GPU 가속 높이 애니메이션
+                function animateHeight(element, targetHeight, duration = 600) {
+                    const startHeight = element.offsetHeight || parseFloat(element.style.maxHeight) || 386.5
+                    const heightDiff = targetHeight - startHeight
+                    const startTime = performance.now()
+                    
+                    element.style.willChange = 'height, max-height'
+                    
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime
+                        const progress = Math.min(elapsed / duration, 1)
+                        const easeProgress = 1 - Math.pow(1 - progress, 3) // easeOutCubic
+                        
+                        const currentHeight = startHeight + (heightDiff * easeProgress)
+                        element.style.maxHeight = currentHeight + 'px'
+                        
+                        if (progress < 1) {
+                            requestAnimationFrame(animate)
+                        } else {
+                            element.style.willChange = 'auto'
+                        }
+                    }
+                    
+                    requestAnimationFrame(animate)
+                }
+                
                 const gallMore = (e) => {
+                    console.log('더보기 버튼 클릭됨!')
+                    
+                    if (isAnimating) {
+                        console.log('애니메이션 중이라 리턴')
+                        return
+                    }
+                    
                     isGallOpen = !isGallOpen
-                    const icon = e.querySelector('.chevron-icon')
-
+                    console.log('isGallOpen 상태:', isGallOpen)
+                    
+                    const gallWrapper = document.querySelector('.gallGridWrapper')
+                    
+                    // height 속성 제거하고 max-height만 사용
+                    gallWrapper.style.height = ''
+                    
                     if (isGallOpen) {
-                        // 더보기 - 모든 이미지 표시
+                        console.log('더보기 모드 시작')
+                        
+                        // 이미지 교체
                         document.querySelectorAll('.gallGridWrapper [data-url]').forEach(item => {
                             item.style.backgroundImage = `url('${item.getAttribute('data-url')}')`
                         })
-                        document.querySelector('.gallGridWrapper').style.height = document.querySelector('.gallGridWrapper').scrollHeight + 'px'
+                        
+                        // max-height 설정 (height 속성 제거했으므로 max-height가 적용됨)
+                        gallWrapper.style.maxHeight = gallWrapper.scrollHeight + 'px'
+                        console.log('높이 변경:', gallWrapper.scrollHeight + 'px')
+                        
                         e.innerHTML = '접기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease; transform: rotate(180deg);"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     } else {
-                        // 접기 - 원래 높이로 복원
-                        document.querySelector('.gallGridWrapper').style.height = '386.5px'
+                        console.log('접기 모드 시작')
+                        gallWrapper.style.maxHeight = '386.5px'
                         e.innerHTML = '더보기&nbsp;&nbsp;<svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="#777" style="transition: transform 0.3s ease;"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>'
                     }
                 }
@@ -1562,19 +1694,19 @@
                                 cHeight = cHeight / 2 - 3
                             }
                             if (!isGallOpen) {
-                                document.querySelector(`.gallGridWrapper`).style.height = ((cHeight * 3) + 12) + 'px'
+                                document.querySelector(`.gallGridWrapper`).style.maxHeight = ((cHeight * 3) + 12) + 'px'
                             } else {
-                                document.querySelector(`.gallGridWrapper`).style.height = ''
+                                document.querySelector(`.gallGridWrapper`).style.maxHeight = 'none'
                             }
                         } else {
                             document.querySelector(`.gallLayerWrapper .moreBtnWrap`).style.display = 'none'
                         }
                     } else {
                         if (!isGallOpen) {
-                            document.querySelector(`.gallGridWrapper`).style.height =
+                            document.querySelector(`.gallGridWrapper`).style.maxHeight =
                                 (((document.querySelector(`.gallGridWrapper .item`).clientHeight) * 3) + (5 * 2.5) + 5) + 'px'
                         } else {
-                            document.querySelector(`.gallGridWrapper`).style.height = ''
+                            document.querySelector(`.gallGridWrapper`).style.maxHeight = 'none'
                         }
                     }
                 }
