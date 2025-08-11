@@ -3269,6 +3269,12 @@
             if (currentIndex !== -1) {
                 window.currentGalleryIndex = currentIndex;
                 window.galleryImages = allImages;
+                
+                // initGalleryModal의 currentImageIndex와 동기화
+                if (window.galleryModalInstance && window.galleryModalInstance.setCurrentIndex) {
+                    window.galleryModalInstance.setCurrentIndex(currentIndex);
+                }
+                
                 updateGalleryCounter();
             }
         }
@@ -3435,14 +3441,28 @@
             }
         }
         
+        // 외부에서 currentImageIndex를 설정할 수 있도록 함수 제공
+        function setCurrentIndex(index) {
+            if (index >= 0 && index < images.length) {
+                currentImageIndex = index;
+                updateModal();
+            }
+        }
+        
         function showPrevious() {
             currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            // window.currentGalleryIndex와 동기화
+            window.currentGalleryIndex = currentImageIndex;
             updateModal();
+            updateGalleryCounter();
         }
         
         function showNext() {
             currentImageIndex = (currentImageIndex + 1) % images.length;
+            // window.currentGalleryIndex와 동기화
+            window.currentGalleryIndex = currentImageIndex;
             updateModal();
+            updateGalleryCounter();
         }
         
         // 이벤트 리스너들
@@ -3456,6 +3476,11 @@
                 closeModal();
             }
         });
+        
+        // 전역에서 접근할 수 있도록 인스턴스 저장
+        window.galleryModalInstance = {
+            setCurrentIndex: setCurrentIndex
+        };
         
         // 키보드 이벤트
         document.addEventListener('keydown', (e) => {

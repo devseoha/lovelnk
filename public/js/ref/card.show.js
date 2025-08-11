@@ -4,10 +4,11 @@ let WIN_SCR_TOP = 0
 // 異뺥븯�뷀솚
 function floatGarland() {
     $(".floatingBox").addClass("see animated animate__fadeInUp");
-    setTimeout(function(){
+    setTimeout(function () {
         $(".floatingBox").toggleClass("hi");
     }, 2000);
 }
+
 // �닿린
 document.querySelector(".floatingBox, .garlandSection .garBox")?.addEventListener('click', () => {
     $(".bttmGarlandWrapper .in").removeClass("animate__fadeOutDown");
@@ -15,7 +16,7 @@ document.querySelector(".floatingBox, .garlandSection .garBox")?.addEventListene
     $(".bttmGarlandWrapper .in").addClass("animated animate__fadeInUp");
 });
 // �リ린
-$(".bttmGarlandWrapper .close").click(function(){
+$(".bttmGarlandWrapper .close").click(function () {
 
     $(".bttmGarlandWrapper").removeClass("see");
     $(".bttmGarlandWrapper .in").addClass("animate__fadeOutDown");
@@ -29,6 +30,7 @@ function openContactPop() {
     WIN_SCR_TOP = top;
     $("html,body").css("overflow", "hidden");
 }
+
 function openInterviewPop() {
     $("body").addClass("pop_interview_open");
     const top = document.querySelector('html').scrollTop;
@@ -36,10 +38,10 @@ function openInterviewPop() {
     $("html,body").css("overflow", "hidden");
 }
 
-function youtube_parser(url){
+function youtube_parser(url) {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     var match = url.match(regExp);
-    return (match&&match[7].length==11)? match[7] : false;
+    return (match && match[7].length == 11) ? match[7] : false;
 }
 
 
@@ -48,31 +50,32 @@ function bgmAniFunc() {
     $('.anibox2').addClass("hd").viewportChecker({
         classToAdd: 'visible animated fadeInDown ',
         offset: 0,
-        callbackFunction: function(elem, action) {
-            setTimeout(function(){
+        callbackFunction: function (elem, action) {
+            setTimeout(function () {
                 $(".bgmbar").addClass("fadeBg");
             }, 2500);
         }
     });
 
     var videocontrol = document.getElementById("videoplay");
-    if(!(videocontrol?.paused)) {
+    if (!(videocontrol?.paused)) {
         $(".bgmbar .sound").find("i.fa").removeClass("fa-volume-off");
         $(".bgmbar .sound").find("i.fa").addClass("fa-volume-up");
     }
 }
 
 
-
 // 怨꾩쥖踰덊샇 �앹뾽
 let isAcctBox = false
+
 function openAcctBox(i) {
     $("#acctBox .grp").text($(i).attr("data-group"));
-    $("#acctBox .ment").html($(i).attr("data-bank")+"<br/>"+$(i).attr("data-number")+"<br/>"+$(i).attr("data-name"));
+    $("#acctBox .ment").html($(i).attr("data-bank") + "<br/>" + $(i).attr("data-number") + "<br/>" + $(i).attr("data-name"));
     $("#copytext").val($(i).attr("data-number"));
     $("#acctBox").css("display", "block");
     isAcctBox = true
 }
+
 function closeAcctBox() {
     $("#acctBox").css("display", "none");
 }
@@ -85,7 +88,7 @@ function copy_to_clipboard(txtId) {
     remove_focus_clipboard();
     alert("蹂듭궗媛� �꾨즺�섏뿀�듬땲��.");*/
 
-    var copytxt = $("#"+txtId).val();
+    var copytxt = $("#" + txtId).val();
     const t = document.createElement("textarea");
     document.body.appendChild(t);
     t.value = copytxt;
@@ -96,6 +99,7 @@ function copy_to_clipboard(txtId) {
     document.querySelector(`.acc_copy`).style.display = 'block'
     document.querySelector(`#acctBox`).style.display = 'none'
 }
+
 function copy_to_clipboard2(txtId) {
     /*var copyText = document.getElementById(txtId);
 	copyText.select();
@@ -103,7 +107,7 @@ function copy_to_clipboard2(txtId) {
     remove_focus_clipboard();
     alert("蹂듭궗媛� �꾨즺�섏뿀�듬땲��.");*/
 
-    var copytxt = $("#"+txtId).val();
+    var copytxt = $("#" + txtId).val();
     const t = document.createElement("textarea");
     document.body.appendChild(t);
     t.value = copytxt;
@@ -138,10 +142,6 @@ function remove_focus_clipboard() {
         }
     */
 }
-
-
-
-
 
 
 //
@@ -179,7 +179,7 @@ function searchAddressToCoordinate(address) {
 
     naver.maps.Service.geocode({
         query: address
-    }, function(status, response) {
+    }, function (status, response) {
 
         //console.log(status);
         //console.log(response);
@@ -236,8 +236,7 @@ function searchAddressToCoordinate(address) {
 }
 
 
-
-
+<script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=발급받은 Appkey"></script>
 
 
 function fnCallWeb2App(type) {
@@ -245,10 +244,9 @@ function fnCallWeb2App(type) {
     var scheme, package, fallbackUrl, fail, useUrlScheme;
     const msg = lang === 'ko' ? '�깆씠 �ㅼ튂�섏뼱 �덉� �딆� 寃쎌슦\n湲� �덈궡媛� �ㅽ뻾�섏� �딆쓣 �� �덉뒿�덈떎' : 'If the app is not installed, directions may not start.'
 
-    switch(type) {
+    switch (type) {
         case 'kakaoNavi':
             openAlert(msg);
-            /*window.open('https://map.kakao.com/link/to/�쒖슱 �좊씪�명뀛,37.5575055053737,127.007952910656','kakaomap','');*/
             Kakao.Navi.share({
                 name: mp_hname,
                 x: mp_x,
@@ -258,7 +256,7 @@ function fnCallWeb2App(type) {
             break;
         case 'tmap':
             openAlert(msg);
-            scheme = `tmap://route?goalx=${mp_x}&goaly=${mp_y}&goalname=${mp_hname}`;
+            scheme = `tmap://route?rGoName=${mp_hname}&rGoX=${mp_x}&rGoY=${mp_y}`;
             package = 'com.skt.tmap.ku';
             fallbackUrl = scheme;
             break;
@@ -268,7 +266,7 @@ function fnCallWeb2App(type) {
             package = 'com.nhn.android.nmap';
             //useUrlScheme = true;
             fallbackUrl = `http://map.naver.com/index.nhn?elng=${mp_x}&elat=${mp_y}&etext=${mp_hname}&menu=route&pathType=0`;
-            fail = function() {
+            fail = function () {
                 $('#fakeAnchor').remove();
                 $('body').append(`<a href='http://map.naver.com/index.nhn?elng=${mp_x}&elat=${mp_y}&etext=${mp_hname}&menu=route&pathType=0' id='fakeAnchor'></a>`);
                 $('#fakeAnchor').get(0).click();
@@ -296,11 +294,11 @@ const moreInterview = () => {
 
 const moreBooks = (ele) => {
     document.querySelectorAll(`.books-open-list-ul li:not(.on)`).forEach((item, key) => {
-        if(key < 4) {
+        if (key < 4) {
             item.classList.add('on')
         }
     })
-    if(document.querySelectorAll(`.books-open-list-ul li:not(.on)`).length == 0) {
+    if (document.querySelectorAll(`.books-open-list-ul li:not(.on)`).length == 0) {
         ele.style.display = 'none'
     }
 }
@@ -318,32 +316,32 @@ const openInfoPopup = (imgPath) => {
  * [BGM �ㅽ듃由щ컢 �ъ깮, �뺤�]
  */
 const bgmStreaming = () => {
-    if(typeof isPlay !== 'undefined' && isPlay) {
+    if (typeof isPlay !== 'undefined' && isPlay) {
         const bgm = document.querySelector('#videoplay');
         const url = bgm.getAttribute('data-url')
-        if(url.includes('mp3')) {
-            if(bgm.paused) {
+        if (url.includes('mp3')) {
+            if (bgm.paused) {
                 bgm.play()
             }
         } else {
             bgm.setAttribute('type', 'application/x-mpegURL')
 
-            if(!Hls.isSupported() && bgm.canPlayType('application/vnd.apple.mpegurl') === 'maybe') {
+            if (!Hls.isSupported() && bgm.canPlayType('application/vnd.apple.mpegurl') === 'maybe') {
                 bgm.src = url
-                if(bgm.paused) {
+                if (bgm.paused) {
                     bgm.play()
                 }
             } else {
                 const hls = new Hls()
                 hls.loadSource(url)
                 hls.attachMedia(bgm)
-                if(bgm.paused) {
+                if (bgm.paused) {
                     bgm.play()
                 }
             }
         }
 
-        if(bgm.paused) {
+        if (bgm.paused) {
             $(".bgmbar .sound").find("i.fa").addClass("fa-volume-off");
             $(".bgmbar .sound").find("i.fa").removeClass("fa-volume-up");
         } else {
