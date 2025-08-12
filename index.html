@@ -4002,6 +4002,228 @@
         }
     }, {passive: false})
 
+    // ========================================
+    // 방문자 추적 시스템 (GitHub Pages 지원)
+    // ========================================
+    
+    // Google Sheets 웹앱 URL
+    const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbypA80uWhjlE-k_sre1_ckWJBWq72zOSALp-drqNL8WRX7KT8ZcWeExxTbS_caxjy3q/exec';
+    
+    // 방문자 데이터 수집 및 저장
+    function initVisitorTracking() {
+        // 기본 방문자 정보 수집
+        const visitorData = {
+            timestamp: new Date().toISOString(),
+            userAgent: navigator.userAgent,
+            referrer: document.referrer || 'direct',
+            screenSize: `${screen.width}x${screen.height}`,
+            language: navigator.language,
+            timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            pageUrl: window.location.href,
+            visitCount: getVisitCount(),
+            sessionId: getSessionId()
+        };
+        
+        // IP 및 지역 정보 비동기 수집 (무료 API 사용)
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(ipData => {
+                visitorData.ip = ipData.ip;
+                visitorData.country = ipData.country_name;
+                visitorData.region = ipData.region;
+                visitorData.city = ipData.city;
+                visitorData.latitude = ipData.latitude;
+                visitorData.longitude = ipData.longitude;
+                visitorData.isp = ipData.org;
+                
+                // 브라우저 및 디바이스 정보 추가
+                visitorData.browser = getBrowserInfo(navigator.userAgent);
+                visitorData.device = getDeviceInfo(navigator.userAgent);
+                
+                saveVisitorData(visitorData);
+                sendToGoogleSheets(visitorData);
+                console.log('✅ 방문자 정보 수집 및 Google Sheets 업로드 완료:', visitorData);
+            })
+            .catch(error => {
+                console.warn('IP 정보 수집 실패, 기본 정보만 저장:', error);
+                
+                // 브라우저 및 디바이스 정보 추가
+                visitorData.browser = getBrowserInfo(navigator.userAgent);
+                visitorData.device = getDeviceInfo(navigator.userAgent);
+                
+                saveVisitorData(visitorData);
+                sendToGoogleSheets(visitorData);
+            });
+    }
+    
+    // 브라우저 정보 추출
+    function getBrowserInfo(userAgent) {
+        if (userAgent.includes('Chrome')) return 'Chrome';
+        if (userAgent.includes('Safari')) return 'Safari';
+        if (userAgent.includes('Firefox')) return 'Firefox';
+        if (userAgent.includes('Edge')) return 'Edge';
+        return 'Other';
+    }
+    
+    // 디바이스 정보 추출
+    function getDeviceInfo(userAgent) {
+        if (userAgent.includes('Mobile')) return 'Mobile';
+        if (userAgent.includes('Tablet')) return 'Tablet';
+        return 'Desktop';
+    }
+    
+    // Google Sheets에 데이터 전송
+    function sendToGoogleSheets(data) {
+        fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                console.log('🎉 Google Sheets 업로드 성공!');
+            } else {
+                console.error('❌ Google Sheets 업로드 실패:', result.error);
+            }
+        })
+        .catch(error => {
+            console.error('❌ Google Sheets 전송 오류:', error);
+        });
+    }
+    
+    // 방문 횟수 가져오기/증가
+    function getVisitCount() {
+        const count = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+        localStorage.setItem('visitCount', count.toString());
+        return count;
+    }
+    
+    // 세션 ID 생성/가져오기
+    function getSessionId() {
+        let sessionId = sessionStorage.getItem('sessionId');
+        if (!sessionId) {
+            sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('sessionId', sessionId);
+        }
+        return sessionId;
+    }
+    
+    // 방문자 데이터 저장 (Google Sheets 업로드로 인해 제한 제거)
+    function saveVisitorData(data) {
+        try {
+            const visits = JSON.parse(localStorage.getItem('visitorLogs') || '[]');
+            visits.push(data);
+            
+            // Google Sheets에 자동 업로드되므로 1000개 제한 제거
+            // 로컬에는 최근 100개만 보관 (빠른 로딩을 위해)
+            if (visits.length > 100) {
+                visits.splice(0, visits.length - 100);
+            }
+            
+            localStorage.setItem('visitorLogs', JSON.stringify(visits));
+            localStorage.setItem('lastVisit', new Date().toISOString());
+            
+            updateVisitorStats();
+        } catch (error) {
+            console.error('방문자 데이터 저장 실패:', error);
+        }
+    }
+    
+    // 방문자 통계 업데이트
+    function updateVisitorStats() {
+        const visits = JSON.parse(localStorage.getItem('visitorLogs') || '[]');
+        const today = new Date().toDateString();
+        const todayVisits = visits.filter(visit => 
+            new Date(visit.timestamp).toDateString() === today
+        ).length;
+        
+        localStorage.setItem('todayVisits', todayVisits.toString());
+        localStorage.setItem('totalVisits', visits.length.toString());
+    }
+    
+    // 방문자 데이터 다운로드 (JSON 파일)
+    function downloadVisitorData() {
+        try {
+            const data = localStorage.getItem('visitorLogs');
+            if (!data) {
+                alert('다운로드할 방문자 데이터가 없습니다.');
+                return;
+            }
+            
+            const blob = new Blob([data], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `visitor-logs-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            console.log('방문자 데이터 다운로드 완료');
+        } catch (error) {
+            console.error('다운로드 실패:', error);
+            alert('데이터 다운로드에 실패했습니다.');
+        }
+    }
+    
+    // 방문자 통계 조회
+    function getVisitorStats() {
+        const visits = JSON.parse(localStorage.getItem('visitorLogs') || '[]');
+        const stats = {
+            totalVisits: visits.length,
+            todayVisits: parseInt(localStorage.getItem('todayVisits') || '0'),
+            visitCount: parseInt(localStorage.getItem('visitCount') || '0'),
+            lastVisit: localStorage.getItem('lastVisit'),
+            countries: [...new Set(visits.map(v => v.country).filter(Boolean))],
+            cities: [...new Set(visits.map(v => v.city).filter(Boolean))],
+            referrers: [...new Set(visits.map(v => v.referrer).filter(Boolean))],
+            browsers: [...new Set(visits.map(v => {
+                const ua = v.userAgent;
+                if (ua.includes('Chrome')) return 'Chrome';
+                if (ua.includes('Safari')) return 'Safari';
+                if (ua.includes('Firefox')) return 'Firefox';
+                if (ua.includes('Edge')) return 'Edge';
+                return 'Other';
+            }))],
+            devices: [...new Set(visits.map(v => {
+                const ua = v.userAgent;
+                if (ua.includes('Mobile')) return 'Mobile';
+                if (ua.includes('Tablet')) return 'Tablet';
+                return 'Desktop';
+            }))]
+        };
+        return stats;
+    }
+    
+    // 방문자 데이터 초기화
+    function clearVisitorData() {
+        if (confirm('모든 방문자 데이터를 삭제하시겠습니까?')) {
+            localStorage.removeItem('visitorLogs');
+            localStorage.removeItem('visitCount');
+            localStorage.removeItem('todayVisits');
+            localStorage.removeItem('totalVisits');
+            localStorage.removeItem('lastVisit');
+            sessionStorage.removeItem('sessionId');
+            alert('방문자 데이터가 모두 삭제되었습니다.');
+        }
+    }
+    
+    // 페이지 로드 시 방문자 추적 시작
+    initVisitorTracking();
+    
+    // 개발자 도구용 전역 함수들
+    window.visitorTracker = {
+        getStats: getVisitorStats,
+        downloadData: downloadVisitorData,
+        clearData: clearVisitorData,
+        viewLogs: () => JSON.parse(localStorage.getItem('visitorLogs') || '[]')
+    };
+
 </script>
 
 
